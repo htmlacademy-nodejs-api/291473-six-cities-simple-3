@@ -26,22 +26,32 @@
 // +Hamburg (latitude: 53.550341, longitude: 10.000654);
 // +Dusseldorf (latitude: 51.225402, longitude: 6.776314).
 
-import { City } from './city.type.js';
+import { City } from './city.enum.js';
 import { OfferPremium } from './offer-premium.enum.js';
 import { HousingType } from './housing-type.enum.js';
-import { AmenitiesType } from './amenities-type.enum.js';
-import { User } from './user.type.js';
-import { OfferCoordinates } from './offer-coordinates.type.js';
+import { Amenities } from './amenities.enum.js';
+import { Coordinates } from './coordinates.type.js';
 
+import { User } from './user.type.js';
 
 export type Offer = {
-    name: string,
+    title: string,
     description: string;
     postDate: Date;
     city: string;
     previewImagePath: string;
-    detailImagePath: string;
-    offerPremium: string;
+    detailImagePath: string[];
+    premium: boolean;
+    rating: string;
+    HousingType: string;
+    roomsNumber: number;
+    guestsNuber: number;
+    rentPrice: number;
+    amenities: string[];
+    user: User;
+    // commentsCount: string;
+    // coordinates: Coordinates;
+
     // rating: number;
     // HousingType: HousingType;
     // roomsNumber: number;
