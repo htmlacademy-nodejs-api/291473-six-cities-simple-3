@@ -49,8 +49,8 @@ export type Offer = {
     rentPrice: number;
     amenities: string[];
     user: User;
-    // commentsCount: string;
-    // coordinates: Coordinates;
+    commentsCount: number;
+    coordinates: Coordinates;
 
     // rating: number;
     // HousingType: HousingType;
