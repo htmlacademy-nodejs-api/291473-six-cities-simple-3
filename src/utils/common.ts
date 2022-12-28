@@ -7,8 +7,8 @@ export const createOffer = (row: string) => {
     description,
     createdDate,
     city,
-    previewImage,
-    detailImages,
+    previewImagePath,
+    detailImagePath,
     premium,
     rating,
     housingType,
@@ -16,11 +16,11 @@ export const createOffer = (row: string) => {
     guestsNuber,
     rentPrice,
     amenities,
-    userName,
-    userEmail,
-    userAvatarPath,
-    userPassword,
-    userType,
+    name,
+    email,
+    avatarPath,
+    password,
+    type,
     commentsCount,
     coordinates] = tokens;
   return {
@@ -28,19 +28,28 @@ export const createOffer = (row: string) => {
     description,
     postDate: new Date(createdDate),
     city,
-    previewImage,
-    detailImages,
-    premium,
-    rating,
+    previewImagePath,
+    detailImagePath: detailImagePath.split(';'),
+    premium: premium === 'true',
+    rating: Number(rating),
     housingType,
-    roomsNumber,
-    guestsNuber,
-    rentPrice,
-    amenities,
-    user: { userName, userEmail, userAvatarPath, userPassword, userType},
-    commentsCount,
-    coordinates
-  } as unknown as Offer;
+    roomsNumber: Number(roomsNumber),
+    guestsNuber: Number(guestsNuber),
+    rentPrice: Number(rentPrice),
+    amenities: amenities.split(';'),
+    user: {
+      name,
+      email,
+      avatarPath,
+      password,
+      type
+    },
+    commentsCount: Number(commentsCount),
+    coordinates: {
+      latitude: coordinates.split(';')[0],
+      longitude: coordinates.split(';')[1]
+    }
+  } as Offer;
 };
 
 export const getErrorMessage = (error: unknown): string =>

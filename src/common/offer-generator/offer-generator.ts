@@ -25,8 +25,8 @@ export default class OfferGenerator implements OfferGeneratorInterface {
     const description = getRandomItem<string>(this.mockData.descriptions);
     const createdDate = dayjs().subtract(generateRandomValue(FIRST_WEEK_DAY, LAST_WEEK_DAY), 'day').toISOString();
     const city = getRandomItem<string>(this.mockData.cities);
-    const previewImage = getRandomItem<string>(this.mockData.previewImages);
-    const detailImages = getRandomItems<string>(this.mockData.detailImages).join(';');
+    const previewImagePath = getRandomItem<string>(this.mockData.previewImagePaths);
+    const detailImagePath = getRandomItems<string>(this.mockData.detailImagePaths).join(';');
     const premium = getRandomItem<string>(PREMIUM_TYPE);
     const rating = generateRandomValue(RATING_NUMBER[0], RATING_NUMBER[1], NUM_AFTER_DIGIT_RATING);
     const housingType = getRandomItem<string>(this.mockData.housingTypes);
@@ -34,11 +34,11 @@ export default class OfferGenerator implements OfferGeneratorInterface {
     const guestsNuber = generateRandomValue(GUESTS_NUMBER[0], GUESTS_NUMBER[1]);
     const rentPrice = generateRandomValue(RENT_PRICE_NUMBER[0], RENT_PRICE_NUMBER[1]);
     const amenities = getRandomItems<string>(this.mockData.amenities).join(';');
-    const userName = getRandomItem<string>(this.mockData.names);
-    const userEmail = getRandomItem<string>(this.mockData.emails);
-    const userAvatarPath = getRandomItem<string>(this.mockData.avatarPaths);
-    const userPassword = generateRandomItem(PASSWORD_LENGTH[0], PASSWORD_LENGTH[1], PASSWORD_CHARACTERS);
-    const userType = getRandomItem<string>(USER_TYPE);
+    const name = getRandomItem<string>(this.mockData.names);
+    const email = getRandomItem<string>(this.mockData.emails);
+    const avatarPath = getRandomItem<string>(this.mockData.avatarPaths);
+    const password = generateRandomItem(PASSWORD_LENGTH[0], PASSWORD_LENGTH[1], PASSWORD_CHARACTERS);
+    const type = getRandomItem<string>(USER_TYPE);
     const commentsCount = generateRandomValue(COMMENTS_NUMBER[0], COMMENTS_NUMBER[1]);
     const coordinates = `${CITIES_COORDINATES[city].latitude};${CITIES_COORDINATES[city].longitude}`;
 
@@ -47,19 +47,20 @@ export default class OfferGenerator implements OfferGeneratorInterface {
       description,
       createdDate,
       city,
-      previewImage,
-      detailImages,
-      premium, rating,
+      previewImagePath,
+      detailImagePath,
+      premium,
+      rating,
       housingType,
       roomsNumber,
       guestsNuber,
       rentPrice,
       amenities,
-      userName,
-      userEmail,
-      userAvatarPath,
-      userPassword,
-      userType,
+      name,
+      email,
+      avatarPath,
+      password,
+      type,
       commentsCount,
       coordinates
     ].join('\t');

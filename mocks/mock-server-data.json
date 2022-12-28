@@ -32,7 +32,7 @@
       "Hamburg",
       "Dusseldorf"
     ],
-    "previewImages": [
+    "previewImagePaths": [
       "preview-image1.jpg",
       "preview-image2.jpg",
       "preview-image3.jpg",
@@ -40,7 +40,7 @@
       "preview-image5.jpg",
       "preview-image6.jpg"
     ],
-    "detailImages": [
+    "detailImagePaths": [
       "detail-image1.jpg",
       "detail-image2.jpg",
       "detail-image3.jpg",
