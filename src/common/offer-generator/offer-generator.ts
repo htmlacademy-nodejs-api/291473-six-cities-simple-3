@@ -1,31 +1,21 @@
 import dayjs from 'dayjs';
 import { MockData } from '../../types/mock-data.type.js';
-// import { OfferType } from '../../types/offer-type.enum.js';
 import { generateRandomValue, generateRandomItem, getRandomItem, getRandomItems } from '../../utils/random.js';
 import { OfferGeneratorInterface } from './offer-generator.interface.js';
-
-// const MIN_PRICE = 500;
-// const MAX_PRICE = 2000;
+import {CITIES_COORDINATES} from '../../types/city.enum.js';
 
 const FIRST_WEEK_DAY = 1;
 const LAST_WEEK_DAY = 7;
-
 const RATING_NUMBER = [1, 5];
 const NUM_AFTER_DIGIT_RATING = 1;
-
 const PREMIUM_TYPE = ['true', 'false'];
-
 const ROOMS_NUMBER = [1, 8];
 const GUESTS_NUMBER = [1, 10];
 const RENT_PRICE_NUMBER = [100, 100000];
-
 const PASSWORD_CHARACTERS = '0123456789qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM';
 const PASSWORD_LENGTH = [6, 12];
-
 const USER_TYPE = ['Regular', 'Pro'];
-
 const COMMENTS_NUMBER = [0, 20];
-// const PASSWORD_LENGTH = [8, 12];
 
 export default class OfferGenerator implements OfferGeneratorInterface {
   constructor(private readonly mockData: MockData) {}
@@ -44,58 +34,13 @@ export default class OfferGenerator implements OfferGeneratorInterface {
     const guestsNuber = generateRandomValue(GUESTS_NUMBER[0], GUESTS_NUMBER[1]);
     const rentPrice = generateRandomValue(RENT_PRICE_NUMBER[0], RENT_PRICE_NUMBER[1]);
     const amenities = getRandomItems<string>(this.mockData.amenities).join(';');
-
     const userName = getRandomItem<string>(this.mockData.names);
     const userEmail = getRandomItem<string>(this.mockData.emails);
     const userAvatarPath = getRandomItem<string>(this.mockData.avatarPaths);
     const userPassword = generateRandomItem(PASSWORD_LENGTH[0], PASSWORD_LENGTH[1], PASSWORD_CHARACTERS);
     const userType = getRandomItem<string>(USER_TYPE);
-
     const commentsCount = generateRandomValue(COMMENTS_NUMBER[0], COMMENTS_NUMBER[1]);
-
-    // password
-    // userType - regular / pro
-
-    // +rating,
-    // housingType,
-    // roomsNumber: Number.parseInt(roomsNumber, 10),
-    //  guestsNuber: Number.parseInt(guestsNuber, 10),
-    //  rentPrice: Number.parseInt(rentPrice, 10),
-    //  amenities: amenities.split(';'),
-    //  user: { name, email, avatarPath, password, type },
-    //  commentsCount: Number.parseInt(commentsCount, 10),
-    //  coordinates: {
-    //    latitude: coordinates.split(';')[0],
-    //    longitude: coordinates.split(';')[1]
-    //  }
-
-
-    // const user = getRandomItem<string>(this.mockData.users);
-    // const email = getRandomItem<string>(this.mockData.emails);
-    // const avatar = getRandomItem<string>(this.mockData.avatars);
-
-
-    // titles: string[];
-    // descriptions: string[];
-    // cities: string[];
-    // previewImages: string[];
-    // detailImages: string[];
-    // users: string[];
-    // emails: string[];
-    // avatars: string[];
-
-    // const categories = getRandomItems<string>(this.mockData.categories).join(';');
-    // const title = getRandomItem<string>(this.mockData.titles);
-    // const description = getRandomItem<string>(this.mockData.descriptions);
-    // const photo = getRandomItem<string>(this.mockData.offerImages);
-    // const type = getRandomItem([OfferType.Buy, OfferType.Sell]);
-    // const price = generateRandomValue(MIN_PRICE, MAX_PRICE).toString();
-    // const author = getRandomItem<string>(this.mockData.users);
-    // const email = getRandomItem<string>(this.mockData.emails);
-    // const avatar = getRandomItem<string>(this.mockData.avatars);
-    // const createdDate = dayjs().subtract(generateRandomValue(FIRST_WEEK_DAY, LAST_WEEK_DAY), 'day').toISOString();
-
-    // const [firstname, lastname] = author.split(' ');
+    const coordinates = `${CITIES_COORDINATES[city].latitude};${CITIES_COORDINATES[city].longitude}`;
 
     return [
       title,
@@ -115,11 +60,8 @@ export default class OfferGenerator implements OfferGeneratorInterface {
       userAvatarPath,
       userPassword,
       userType,
-      commentsCount
-      // , , , , user, email, avatar, createdDate,
-      // description, createdDate,
-      // photo, type, price, categories,
-      // firstname, lastname, email, avatar,
+      commentsCount,
+      coordinates
     ].join('\t');
   }
 }

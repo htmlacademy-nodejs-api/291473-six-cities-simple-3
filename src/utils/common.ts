@@ -21,7 +21,8 @@ export const createOffer = (row: string) => {
     userAvatarPath,
     userPassword,
     userType,
-    commentsCount] = tokens;
+    commentsCount,
+    coordinates] = tokens;
   return {
     title,
     description,
@@ -37,7 +38,8 @@ export const createOffer = (row: string) => {
     rentPrice,
     amenities,
     user: { userName, userEmail, userAvatarPath, userPassword, userType},
-    commentsCount
+    commentsCount,
+    coordinates
   } as unknown as Offer;
 };
 
