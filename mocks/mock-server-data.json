@@ -52,6 +52,12 @@
       "detail-image9.jpg",
       "detail-image10.jpg"
     ],
+    "housingTypes": [
+      "apartment",
+      "house",
+      "room",
+      "hotel"
+    ],
     "users": [
       "Иван Иванов",
       "Олег Сидоров",

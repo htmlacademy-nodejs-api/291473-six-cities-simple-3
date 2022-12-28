@@ -9,3 +9,8 @@ export const getRandomItems = <T>(items: T[]):T[] => {
 
 export const getRandomItem = <T>(items: T[]):T =>
   items[generateRandomValue(0, items.length - 1)];
+
+// export const getRandomFloat = (min: number, max: number): number => {
+//   const randomFloat = Math.random() * (max - min) + min;
+//   return randomFloat;
+// };

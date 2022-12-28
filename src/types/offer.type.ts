@@ -10,7 +10,7 @@ export type Offer = {
     detailImagePath: string[];
     premium: boolean;
     rating: string;
-    HousingType: string;
+    housingType: string;
     roomsNumber: number;
     guestsNuber: number;
     rentPrice: number;
