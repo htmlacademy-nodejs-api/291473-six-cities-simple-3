@@ -1,0 +1,107 @@
+{
+  "api": {
+    "titles": [
+      "Дуплекс студия Шарентон 33",
+      "Boulevard de Bonne Nouvelle",
+      "Делюкс",
+      "Студия Клевер",
+      "Docteur Blanche",
+      "Липовая аллея",
+      "Студия Булонь-Бийанкур",
+      "Альма сьют",
+      "Трокадеро 5",
+      "Ламарк-Монмартр"
+    ],
+    "descriptions": [
+      "Меблированная светлая квартира-студия.",
+      "Небольшая квартира в аренду со старинной мебелью, современной домашней техникой.",
+      "Очаровательная двухкомнатная квартира с отдельной кухней, большой гостиной, совмещенной со столовой.",
+      "Просторные, светлые апартаменты для долгосрочной аренды.",
+      "Уютная квартира для пары напротив сада Тюильри, в нескольких минутах ходьбы от Лувра.",
+      "2-комнатная меблированная квартира для долгосрочного проживания на Rue des Belles Feuilles в 16-м административном округе Парижа",
+      "Квартиру отличает функциональный интерьер, выполненный в теплых тонах и приятном стиле, а также кафельные полы.",
+      "Данная студия расположена в престижном 16-м округе Парижа рядом с набережной Сены, Трокадеро, Эйфелевой башней.",
+      "Квартира находится в исключительно тихом и благовустроенном районе с многочисленными кафе, бистро, барами и ресторанами. Удобное сообщение позволит с легкостью добраться как до центра города.",
+      "Если говорить о расположении этой квартиры, то нужно сказать, что оно по-настоящему хорошее."
+    ],
+    "cities": [
+      "Paris",
+      "Cologne",
+      "Brussels",
+      "Amsterdam",
+      "Hamburg",
+      "Dusseldorf"
+    ],
+    "previewImagePaths": [
+      "preview-image1.jpg",
+      "preview-image2.jpg",
+      "preview-image3.jpg",
+      "preview-image4.jpg",
+      "preview-image5.jpg",
+      "preview-image6.jpg"
+    ],
+    "detailImagePaths": [
+      "detail-image1.jpg",
+      "detail-image2.jpg",
+      "detail-image3.jpg",
+      "detail-image4.jpg",
+      "detail-image5.jpg",
+      "detail-image6.jpg",
+      "detail-image7.jpg",
+      "detail-image8.jpg",
+      "detail-image9.jpg",
+      "detail-image10.jpg"
+    ],
+    "housingTypes": [
+      "apartment",
+      "house",
+      "room",
+      "hotel"
+    ],
+    "amenities": [
+      "Breakfast", 
+      "Air conditioning", 
+      "Laptop friendly workspace", 
+      "Baby seat", 
+      "Washer", 
+      "Towels", 
+      "Fridge"
+    ],
+    "names" : [
+      "Liam Johnson",
+      "Noah Williams",
+      "Oliver Garcia",
+      "William Martinez",
+      "Alexander Lopez",
+      "Evelyn Thompson",
+      "Luna Green",
+      "Scarlett Campbell",
+      "Chloe Roberts",
+      "Grace Carter"
+    ],
+    "emails" : [
+      "snow@pisem.local",
+      "fish@big.local",
+      "freedom@pisem.local",
+      "kujo-fan@story.local",
+      "rolan@pochta.local",
+      "author@mir.local",
+      "green@pisem.local",
+      "scarlett@dka.local",
+      "roberts@dka.local",
+      "grace@dka.local"
+    ],
+    "avatarPaths": [
+      "avatar1.jpg",
+      "avatar2.jpg",
+      "avatar3.jpg",
+      "avatar4.jpg",
+      "avatar5.jpg",
+      "avatar6.jpg",
+      "avatar7.jpg",
+      "avatar8.jpg",
+      "avatar9.jpg",
+      "avatar10.jpg"
+    ]
+  }
+}
