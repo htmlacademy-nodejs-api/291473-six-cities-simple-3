@@ -10,12 +10,12 @@ import { OfferGeneratorInterface } from './offer-generator.interface.js';
 const FIRST_WEEK_DAY = 1;
 const LAST_WEEK_DAY = 7;
 
-const MIN_RATING = 1;
-const MAX_RATING = 5;
+const RATING_NUMBER = [1, 5];
 const NUM_AFTER_DIGIT_RATING = 1;
 
 const ROOMS_NUMBER = [1, 8];
-// const GUESTS_NUMBER = [1, 10];
+const GUESTS_NUMBER = [1, 10];
+const RENT_PRICE_NUMBER = [100, 100000]
 
 export default class OfferGenerator implements OfferGeneratorInterface {
   constructor(private readonly mockData: MockData) {}
@@ -28,9 +28,19 @@ export default class OfferGenerator implements OfferGeneratorInterface {
     const previewImage = getRandomItem<string>(this.mockData.previewImages);
     const detailImages = getRandomItems<string>(this.mockData.detailImages).join(';');
     const premium = getRandomItem<string>(['true', 'false']);
-    const rating = generateRandomValue(MIN_RATING, MAX_RATING, NUM_AFTER_DIGIT_RATING);
+    const rating = generateRandomValue(RATING_NUMBER[0], RATING_NUMBER[1], NUM_AFTER_DIGIT_RATING);
     const housingType = getRandomItem<string>(this.mockData.housingTypes);
     const roomsNumber = generateRandomValue(ROOMS_NUMBER[0], ROOMS_NUMBER[1]);
+    const guestsNuber = generateRandomValue(GUESTS_NUMBER[0], GUESTS_NUMBER[1]);
+    const rentPrice = generateRandomValue(RENT_PRICE_NUMBER[0], RENT_PRICE_NUMBER[1]);
+    const amenities = getRandomItems<string>(this.mockData.amenities).join(';');
+
+    const userName = getRandomItem<string>(this.mockData.names);
+    const userEmail = getRandomItem<string>(this.mockData.emails);
+    const userAvatarPath = getRandomItem<string>(this.mockData.avatarPaths);
+
+    // password
+    // userType - regular / pro
 
     // +rating,
     // housingType,
@@ -46,9 +56,9 @@ export default class OfferGenerator implements OfferGeneratorInterface {
     //  }
 
 
-    const user = getRandomItem<string>(this.mockData.users);
-    const email = getRandomItem<string>(this.mockData.emails);
-    const avatar = getRandomItem<string>(this.mockData.avatars);
+    // const user = getRandomItem<string>(this.mockData.users);
+    // const email = getRandomItem<string>(this.mockData.emails);
+    // const avatar = getRandomItem<string>(this.mockData.avatars);
 
 
     // titles: string[];
@@ -74,7 +84,21 @@ export default class OfferGenerator implements OfferGeneratorInterface {
     // const [firstname, lastname] = author.split(' ');
 
     return [
-      title, description, createdDate, city, previewImage, detailImages, premium, rating, housingType, roomsNumber
+      title,
+      description,
+      createdDate,
+      city,
+      previewImage,
+      detailImages,
+      premium, rating,
+      housingType,
+      roomsNumber,
+      guestsNuber,
+      rentPrice,
+      amenities,
+      userName,
+      userEmail,
+      userAvatarPath
       // , , , , user, email, avatar, createdDate,
       // description, createdDate,
       // photo, type, price, categories,

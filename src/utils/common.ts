@@ -2,7 +2,23 @@ import { Offer } from '../types/offer.type.js';
 
 export const createOffer = (row: string) => {
   const tokens = row.replace('\n', '').split('\t');
-  const [title, description, createdDate, city, previewImage, detailImages, premium, rating, housingType, roomsNumber] = tokens;
+  const [
+    title,
+    description,
+    createdDate,
+    city,
+    previewImage,
+    detailImages,
+    premium,
+    rating,
+    housingType,
+    roomsNumber,
+    guestsNuber,
+    rentPrice,
+    amenities,
+    userName,
+    userEmail,
+    userAvatarPath] = tokens;
   return {
     title,
     description,
@@ -13,7 +29,11 @@ export const createOffer = (row: string) => {
     premium,
     rating,
     housingType,
-    roomsNumber
+    roomsNumber,
+    guestsNuber,
+    rentPrice,
+    amenities,
+    user: { userName, userEmail, userAvatarPath}
   } as unknown as Offer;
 };
 
