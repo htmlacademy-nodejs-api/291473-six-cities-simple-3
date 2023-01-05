@@ -9,5 +9,7 @@ export default class Application {
 
     public async init() {
         this.logger.info('Application initialization');
+        // this.logger.warn('Application initialization'); // пример warning;
+        // this.logger.error('Application initialization'); // пример error;
     }
 }
