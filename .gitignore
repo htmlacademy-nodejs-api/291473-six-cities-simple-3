@@ -10,6 +10,7 @@
 coverage
 *.log
 *.env
-
+/mongodb/
+/upload/
 /mocks/mock-data.tsv
 /mocks/mock-offers.tsv
