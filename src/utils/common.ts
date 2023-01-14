@@ -1,3 +1,5 @@
+import crypto from 'crypto';
+
 import { Offer } from '../types/offer.type.js';
 
 export const createOffer = (row: string) => {
@@ -38,11 +40,11 @@ export const createOffer = (row: string) => {
     rentPrice: Number(rentPrice),
     amenities: amenities.split(';'),
     user: {
-      name,
+      // name,
       email,
       avatarPath,
-      password,
-      type
+      // password,
+      // type
     },
     commentsCount: Number(commentsCount),
     coordinates: {
@@ -54,3 +56,8 @@ export const createOffer = (row: string) => {
 
 export const getErrorMessage = (error: unknown): string =>
   error instanceof Error ? error.message : '';
+
+export const createSHA256 = (line: string, salt: string): string => {
+  const shaHasher = crypto.createHmac('sha256', salt);
+  return shaHasher.update(line).digest('hex');
+};
