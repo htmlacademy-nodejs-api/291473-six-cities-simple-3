@@ -40,11 +40,11 @@ export const createOffer = (row: string) => {
     rentPrice: Number(rentPrice),
     amenities: amenities.split(';'),
     user: {
-      // name,
+      name,
       email,
       avatarPath,
-      // password,
-      // type
+      password,
+      type
     },
     commentsCount: Number(commentsCount),
     coordinates: {
