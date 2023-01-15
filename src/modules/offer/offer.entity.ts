@@ -69,9 +69,8 @@ export class OfferEntity extends defaultClasses.TimeStamps {
   @prop({
     required: true,
     type: () => String,
-    enum: housingType,
   })
-  public type!: housingType;
+  public housingType!: housingType;
 
   @prop({
     required: true,
@@ -105,7 +104,6 @@ export class OfferEntity extends defaultClasses.TimeStamps {
   public commentsCount!: number;
 
   @prop({
-    type: () => String,
     required: true,
   })
   public coordinates!: Coordinates;
