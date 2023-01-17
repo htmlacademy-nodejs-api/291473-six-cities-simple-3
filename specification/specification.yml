@@ -16,6 +16,8 @@ tags:
     description: Действия с комментариями.
 
 paths:
+  # ---------------------- USERS PATHS ----------------------
+
   /users/register:
     post:
       tags:
@@ -63,7 +65,110 @@ paths:
       description: Загружает изображение аватара пользователя. Изображение
         аватара должно быть в формате `png` или `jpg`.
 
+  # ---------------------- OFFERS PATHS ----------------------
+
+  # /users/register:
+  # post:
+  #   tags:
+  #     - users
+  #   summary: Регистрация пользователя
+  #   description: Регистрирует нового пользователя.
+
+  #   requestBody:
+  #     description: Информация для создания нового пользователя.
+  #     content:
+  #       application/json:
+  #         schema:
+  #           $ref: "#/components/schemas/createUser"
+  #     required: true
+
+  #   responses:
+  #     "201":
+  #       description: Пользователь зарегистрирован. Объект пользователя.
+  #       content:
+  #         application/json:
+  #           schema:
+  #             $ref: "#/components/schemas/user"
+
+  #     "409":
+  #       description: Пользователь с таким email уже существует.
+
+  /offers/create:
+    post:
+      tags:
+        - offers
+      summary: Создание предложения
+      description: Создает новое предложение.
+
+      requestBody:
+        description: Информация для создания нового предложения.
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/createOffer"
+        required: true
+
+      responses:
+        "201":
+          description: Предложение создано. Объект предложения.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Offer"
+
+  /offers/{OfferId}/edit:
+    post:
+      tags:
+        - offers
+      summary: Редактирование предложения
+      description: Редактирует предложение.
+
+      requestBody:
+        description: Информация по редактируемому предложению.
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/editOffer"
+        required: true
+
+      responses:
+        "201":
+          description: Предложение было отредактировано. Объект предложения.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Offer"
+        "409":
+          description: Предложение попытался отредактировать пользователь, не создавший данное предложение.
+
+  /offers/{OfferId}/delete:
+    post:
+      tags:
+        - offers
+      summary: Удаление предложения
+      description: Удаляет предложение.
+
+      requestBody:
+        description: Информация по удаляемому предложению.
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/deleteOffer"
+        required: true
+
+      responses:
+        "201":
+          description: Предложение было удалено. Объект удаленного предложения.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Offer"
+        "409":
+          description: Предложение попытался удалить пользователь, не создавший данное предложение.
+
 components:
+  # ---------------------- USERS COMPONENTS----------------------
+
   schemas:
     createUser:
       type: object
@@ -76,6 +181,10 @@ components:
         name:
           type: string
           example: Keks
+
+        type:
+          type: string
+          example: Regular
 
         password:
           type: string
@@ -100,3 +209,5 @@ components:
         type:
           type: string
           example: Regular
+
+  # ---------------------- OFFERS COMPONENTS----------------------
