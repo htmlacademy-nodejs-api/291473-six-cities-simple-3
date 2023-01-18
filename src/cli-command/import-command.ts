@@ -14,8 +14,8 @@ import { Offer } from '../types/offer.type.js';
 import { LoggerInterface } from '../common/logger/logger.interface.js';
 import { DatabaseInterface } from '../common/database-client/database.interface.js';
 
-const DEFAULT_DB_PORT = 27017;
-const DEFAULT_USER_PASSWORD = '123456';
+const DEFAULT_DB_PORT = process.env.DB_HOST; //27017;
+const DEFAULT_USER_PASSWORD = process.env.DB_PASSWORD; //'123456';
 
 export default class ImportCommand implements CliCommandInterface {
   public readonly name = '--import';

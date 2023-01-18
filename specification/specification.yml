@@ -260,6 +260,7 @@ components:
         type:
           type: string
           example: Regular
+
     # ---------------------- OFFERS COMPONENTS----------------------
     createOffer:
       type: object
