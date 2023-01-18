@@ -139,11 +139,11 @@ paths:
         "409":
           description: Предложение попытался удалить пользователь, не создавший данное предложение.
 
-  /offers/OffersList{$number}:
+  /offers/OffersList{number}:
     post:
       tags:
         - offers
-      summary: Запрашивает список предложений. $number - количество запрашиваемых предложений
+      summary: Запрашивает список предложений.
       description: Отдает список предложений по аренде.
 
       requestBody:
@@ -191,11 +191,11 @@ paths:
         "409":
           description: В системе отсутствуют комментарии.
 
-  /comments/list/{$number}:
+  /comments/list/{number}:
     post:
       tags:
         - comments
-      summary: Список комментариев. $number - количество запрашиваемых комментариев.
+      summary: Список комментариев.
       description: Получает список комментариев.
 
       requestBody:
@@ -593,8 +593,60 @@ components:
           type: string
           example: 34.3498674
 
-  # ---------------------- COMMENTS COMPONENTS----------------------
+    # ---------------------- COMMENTS COMPONENTS----------------------
 
-  # commentList
-  # createComment
-  # comment
+    commentsList:
+      type: object
+
+      properties:
+        description:
+          type: string
+          example: Квартиру отличает функциональный интерьер
+
+        postDate:
+          type: string
+          example: 12.05.2022
+
+        rating:
+          type: number
+          example: 5
+
+        userId:
+          type: string
+          example: 6329c3d6a04ab1061c6425ea
+
+    createComment:
+      type: object
+
+      properties:
+        description:
+          type: string
+          example: Квартиру отличает функциональный интерьер
+
+        postDate:
+          type: string
+          example: 12.05.2022
+
+        rating:
+          type: number
+          example: 5
+
+    comment:
+      type: object
+
+      properties:
+        description:
+          type: string
+          example: Квартиру отличает функциональный интерьер
+
+        postDate:
+          type: string
+          example: 12.05.2022
+
+        rating:
+          type: number
+          example: 5
+
+        userId:
+          type: string
+          example: 6329c3d6a04ab1061c6425ea
