@@ -66,33 +66,6 @@ paths:
         аватара должно быть в формате `png` или `jpg`.
 
   # ---------------------- OFFERS PATHS ----------------------
-
-  # /users/register:
-  # post:
-  #   tags:
-  #     - users
-  #   summary: Регистрация пользователя
-  #   description: Регистрирует нового пользователя.
-
-  #   requestBody:
-  #     description: Информация для создания нового пользователя.
-  #     content:
-  #       application/json:
-  #         schema:
-  #           $ref: "#/components/schemas/createUser"
-  #     required: true
-
-  #   responses:
-  #     "201":
-  #       description: Пользователь зарегистрирован. Объект пользователя.
-  #       content:
-  #         application/json:
-  #           schema:
-  #             $ref: "#/components/schemas/user"
-
-  #     "409":
-  #       description: Пользователь с таким email уже существует.
-
   /offers/create:
     post:
       tags:
@@ -165,6 +138,84 @@ paths:
                 $ref: "#/components/schemas/deleteOffer"
         "409":
           description: Предложение попытался удалить пользователь, не создавший данное предложение.
+
+  /offers/OffersList{$number}:
+    post:
+      tags:
+        - offers
+      summary: Запрашивает список предложений. $number - количество запрашиваемых предложений
+      description: Отдает список предложений по аренде.
+
+      requestBody:
+        description: Иниформация о предложениях по аренде.
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/offersList"
+        required: true
+
+      responses:
+        "201":
+          description: Переданы послендие предложения по аренде (аренде по дате публикации).
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/offersList"
+        "409":
+          description: В системе отсутствуют предложения по аренде.
+
+  # ---------------------- COMMENTS PATHS ----------------------
+  /comments/create:
+    post:
+      tags:
+        - comments
+      summary: Создание комментарий
+      description: Создает новый комментарий.
+
+      requestBody:
+        description: Информация для создания нового комментарий.
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/createComment"
+        required: true
+
+      responses:
+        "201":
+          description: Комментарий создан. Объект комментарий.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/comment"
+
+        "409":
+          description: В системе отсутствуют комментарии.
+
+  /comments/list/{$number}:
+    post:
+      tags:
+        - comments
+      summary: Список комментариев. $number - количество запрашиваемых комментариев.
+      description: Получает список комментариев.
+
+      requestBody:
+        description: Информация о последних коментариях.
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/commentList"
+        required: true
+
+      responses:
+        "201":
+          description: Переданы послендие комментарии (по дате публикации).
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/comment"
+
+        "409":
+          description: Ошибка при создании комментария Превышено количество симвовлов для комментария.
 
 components:
   # ---------------------- USERS COMPONENTS----------------------
@@ -398,6 +449,46 @@ components:
           type: string
           example: 6329c3d6a04ab1061c6425ea
 
+    offersList:
+      type: object
+
+      properties:
+        rentPrice:
+          type: number
+          example: 50000
+
+        title:
+          type: string
+          example: Дуплекс студия Шарентон 33
+
+        housingType:
+          type: string
+          example: apartment
+
+        postDate:
+          type: string
+          example: 12.05.2022
+
+        city:
+          type: string
+          example: Paris
+
+        previewImagePath:
+          type: string
+          example: preview-image1.jpg
+
+        premium:
+          type: boolean
+          example: true
+
+        rating:
+          type: number
+          example: 5
+
+        commentsCount:
+          type: number
+          example: 5
+
     offer:
       type: object
 
@@ -502,19 +593,8 @@ components:
           type: string
           example: 34.3498674
 
-  # title: string,
-  # description: string;
-  # postDate: Date;
-  # city: string;
-  # previewImagePath: string;
-  # detailImagePath: string[];
-  # premium: boolean;
-  # rating: number;
-  # housingType: housingType;
-  # roomsNumber: number;
-  # guestsNuber: number;
-  # rentPrice: number;
-  # amenities: string[];
-  # commentsCount: number;
-  # coordinates: Coordinates;
-  # user: User;
+  # ---------------------- COMMENTS COMPONENTS----------------------
+
+  # commentList
+  # createComment
+  # comment
