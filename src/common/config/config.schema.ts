@@ -42,7 +42,7 @@ export const configSchema = convict<ConfigSchema>({
     doc: 'Database connection password (MongoDB)',
     format: String,
     env: 'DB_PASSWORD',
-    default: null,
+    default: '123456',
   },
   DB_PORT: {
     doc: 'Port to connect to the database (MongoDB)',
