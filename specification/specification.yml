@@ -580,20 +580,6 @@ components:
           type: string
           example: 6329c3d6a04ab1061c6425ea
 
-    # ---------------------- OTHERS COMPONENTS----------------------
-
-    coordinates:
-      type: object
-
-      properties:
-        latitude:
-          type: string
-          example: 45.2456730
-
-        longitude:
-          type: string
-          example: 34.3498674
-
     # ---------------------- COMMENTS COMPONENTS----------------------
 
     commentsList:
@@ -651,3 +637,17 @@ components:
         userId:
           type: string
           example: 6329c3d6a04ab1061c6425ea
+
+    # ---------------------- OTHERS COMPONENTS----------------------
+
+    coordinates:
+      type: object
+
+      properties:
+        latitude:
+          type: string
+          example: 45.2456730
+
+        longitude:
+          type: string
+          example: 34.3498674
