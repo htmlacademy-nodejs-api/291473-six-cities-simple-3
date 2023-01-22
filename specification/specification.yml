@@ -1,0 +1,653 @@
+openapi: 3.1.0
+info:
+  title: API сервер для проекта «Шесть городов».
+  description: |-
+    * Список ресурсов и маршрутов сервера «Шесть городов».
+  license:
+    name: MIT
+    url: https://opensource.org/licenses/MIT
+  version: 2.0.0
+tags:
+  - name: users
+    description: Действия с пользователем.
+  - name: offers
+    description: Действия с предложениями.
+  - name: comments
+    description: Действия с комментариями.
+
+paths:
+  # ---------------------- USERS PATHS ----------------------
+
+  /users/register:
+    post:
+      tags:
+        - users
+      summary: Регистрация пользователя
+      description: Регистрирует нового пользователя.
+
+      requestBody:
+        description: Информация для создания нового пользователя.
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/createUser"
+        required: true
+
+      responses:
+        "201":
+          description: Пользователь зарегистрирован. Объект пользователя.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/user"
+
+        "409":
+          description: Пользователь с таким email уже существует.
+
+  /users/login:
+    post:
+      tags:
+        - users
+      summary: Авторизация пользователя
+      description: Авторизует пользователя на основе логина и пароля
+
+    get:
+      tags:
+        - users
+      summary: Проверка состояния пользователя
+      description: Возвращает информацию по авторизованному пользователю
+
+  /users/{userId}/avatar:
+    post:
+      tags:
+        - users
+      summary: Загрузить изображение аватара
+      description: Загружает изображение аватара пользователя. Изображение
+        аватара должно быть в формате `png` или `jpg`.
+
+  # ---------------------- OFFERS PATHS ----------------------
+  /offers/create:
+    post:
+      tags:
+        - offers
+      summary: Создание предложения
+      description: Создает новое предложение.
+
+      requestBody:
+        description: Информация для создания нового предложения.
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/createOffer"
+        required: true
+
+      responses:
+        "201":
+          description: Предложение создано. Объект предложения.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Offer"
+
+  /offers/{OfferId}/edit:
+    post:
+      tags:
+        - offers
+      summary: Редактирование предложения
+      description: Редактирует предложение.
+
+      requestBody:
+        description: Информация по редактируемому предложению.
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/editOffer"
+        required: true
+
+      responses:
+        "201":
+          description: Предложение было отредактировано. Объект предложения.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Offer"
+        "409":
+          description: Предложение попытался отредактировать пользователь, не создавший данное предложение.
+
+  /offers/{OfferId}/delete:
+    post:
+      tags:
+        - offers
+      summary: Удаление предложения
+      description: Удаляет предложение.
+
+      requestBody:
+        description: Информация по удаляемому предложению.
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/deleteOffer"
+        required: true
+
+      responses:
+        "201":
+          description: Предложение было удалено. Объект удаленного предложения.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/deleteOffer"
+        "409":
+          description: Предложение попытался удалить пользователь, не создавший данное предложение.
+
+  /offers/OffersList{number}:
+    post:
+      tags:
+        - offers
+      summary: Запрашивает список предложений.
+      description: Отдает список предложений по аренде.
+
+      requestBody:
+        description: Иниформация о предложениях по аренде.
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/offersList"
+        required: true
+
+      responses:
+        "201":
+          description: Переданы послендие предложения по аренде (аренде по дате публикации).
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/offersList"
+        "409":
+          description: В системе отсутствуют предложения по аренде.
+
+  # ---------------------- COMMENTS PATHS ----------------------
+  /comments/create:
+    post:
+      tags:
+        - comments
+      summary: Создание комментарий
+      description: Создает новый комментарий.
+
+      requestBody:
+        description: Информация для создания нового комментарий.
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/createComment"
+        required: true
+
+      responses:
+        "201":
+          description: Комментарий создан. Объект комментарий.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/comment"
+
+        "409":
+          description: В системе отсутствуют комментарии.
+
+  /comments/list/{number}:
+    post:
+      tags:
+        - comments
+      summary: Список комментариев.
+      description: Получает список комментариев.
+
+      requestBody:
+        description: Информация о последних коментариях.
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/commentList"
+        required: true
+
+      responses:
+        "201":
+          description: Переданы послендие комментарии (по дате публикации).
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/comment"
+
+        "409":
+          description: Ошибка при создании комментария Превышено количество симвовлов для комментария.
+
+components:
+  # ---------------------- USERS COMPONENTS----------------------
+
+  schemas:
+    createUser:
+      type: object
+
+      properties:
+        email:
+          type: string
+          example: keks@htmlacademy.ru
+
+        name:
+          type: string
+          example: Keks
+
+        type:
+          type: string
+          example: Regular
+
+        password:
+          type: string
+          example: 123456
+
+    user:
+      type: object
+
+      properties:
+        id:
+          type: string
+          example: 6329c3d6a04ab1061c6425ea
+
+        email:
+          type: string
+          example: keks@htmlacademy.ru
+
+        name:
+          type: string
+          example: Keks
+
+        type:
+          type: string
+          example: Regular
+
+    # ---------------------- OFFERS COMPONENTS----------------------
+    createOffer:
+      type: object
+
+      properties:
+        id:
+          type: string
+          example: 6329c3d6a04ab1061c6425ea
+
+        title:
+          type: string
+          example: Дуплекс студия Шарентон 33
+
+        description:
+          type: string
+          example: Просторные, светлые апартаменты для долгосрочной аренды.
+
+        city:
+          type: string
+          example: Paris
+
+        previewImagePath:
+          type: string
+          example: preview-image1.jpg
+
+        detailImagePath:
+          type: array
+          example:
+            [
+              "detail-image1.jpg",
+              "detail-image2.jpg",
+              "detail-image3.jpg",
+              "detail-image4.jpg",
+              "detail-image5.jpg",
+              "detail-image6.jpg",
+            ]
+
+        premium:
+          type: boolean
+          example: true
+
+        rating:
+          type: number
+          example: 5
+
+        housingType:
+          type: string
+          example: apartment
+
+        roomsNumber:
+          type: number
+          example: 5
+
+        guestsNuber:
+          type: number
+          example: 5
+
+        rentPrice:
+          type: number
+          example: 50000
+
+        amenities:
+          type: array
+          example:
+            [
+              "Breakfast",
+              "Air conditioning",
+              "Laptop friendly workspace",
+              "Baby seat",
+              "Washer",
+              "Towels",
+              "Fridge",
+            ]
+
+        commentsCount:
+          type: number
+          example: 5
+
+        coordinates:
+          type: object
+          items:
+            $ref: "#/components/schemas/coordinates"
+
+        userId:
+          type: string
+          example: 6329c3d6a04ab1061c6425ea
+
+    editOffer:
+      type: object
+
+      properties:
+        id:
+          type: string
+          example: 6329c3d6a04ab1061c6425ea
+
+        title:
+          type: string
+          example: Дуплекс студия Шарентон 33
+
+        description:
+          type: string
+          example: Просторные, светлые апартаменты для долгосрочной аренды.
+
+        city:
+          type: string
+          example: Paris
+
+        previewImagePath:
+          type: string
+          example: preview-image1.jpg
+
+        detailImagePath:
+          type: array
+          example:
+            [
+              "detail-image1.jpg",
+              "detail-image2.jpg",
+              "detail-image3.jpg",
+              "detail-image4.jpg",
+              "detail-image5.jpg",
+              "detail-image6.jpg",
+            ]
+
+        premium:
+          type: boolean
+          example: true
+
+        rating:
+          type: number
+          example: 5
+
+        housingType:
+          type: string
+          example: apartment
+
+        roomsNumber:
+          type: number
+          example: 5
+
+        guestsNuber:
+          type: number
+          example: 5
+
+        rentPrice:
+          type: number
+          example: 50000
+
+        amenities:
+          type: array
+          example:
+            [
+              "Breakfast",
+              "Air conditioning",
+              "Laptop friendly workspace",
+              "Baby seat",
+              "Washer",
+              "Towels",
+              "Fridge",
+            ]
+
+        commentsCount:
+          type: number
+          example: 5
+
+        coordinates:
+          type: object
+          items:
+            $ref: "#/components/schemas/coordinates"
+
+        userId:
+          type: string
+          example: 6329c3d6a04ab1061c6425ea
+
+    deleteOffer:
+      type: object
+
+      properties:
+        id:
+          type: string
+          example: 6329c3d6a04ab1061c6425ea
+
+        title:
+          type: string
+          example: Дуплекс студия Шарентон 33
+
+        userId:
+          type: string
+          example: 6329c3d6a04ab1061c6425ea
+
+    offersList:
+      type: object
+
+      properties:
+        rentPrice:
+          type: number
+          example: 50000
+
+        title:
+          type: string
+          example: Дуплекс студия Шарентон 33
+
+        housingType:
+          type: string
+          example: apartment
+
+        postDate:
+          type: string
+          example: 12.05.2022
+
+        city:
+          type: string
+          example: Paris
+
+        previewImagePath:
+          type: string
+          example: preview-image1.jpg
+
+        premium:
+          type: boolean
+          example: true
+
+        rating:
+          type: number
+          example: 5
+
+        commentsCount:
+          type: number
+          example: 5
+
+    offer:
+      type: object
+
+      properties:
+        id:
+          type: string
+          example: 6329c3d6a04ab1061c6425ea
+
+        title:
+          type: string
+          example: Дуплекс студия Шарентон 33
+
+        description:
+          type: string
+          example: Просторные, светлые апартаменты для долгосрочной аренды.
+
+        postDate:
+          type: string
+          example: 12.05.2022
+
+        city:
+          type: string
+          example: Paris
+
+        previewImagePath:
+          type: string
+          example: preview-image1.jpg
+
+        detailImagePath:
+          type: array
+          example:
+            [
+              "detail-image1.jpg",
+              "detail-image2.jpg",
+              "detail-image3.jpg",
+              "detail-image4.jpg",
+              "detail-image5.jpg",
+              "detail-image6.jpg",
+            ]
+
+        premium:
+          type: boolean
+          example: true
+
+        rating:
+          type: number
+          example: 5
+
+        housingType:
+          type: string
+          example: apartment
+
+        roomsNumber:
+          type: number
+          example: 5
+
+        guestsNuber:
+          type: number
+          example: 5
+
+        rentPrice:
+          type: number
+          example: 50000
+
+        amenities:
+          type: array
+          example:
+            [
+              "Breakfast",
+              "Air conditioning",
+              "Laptop friendly workspace",
+              "Baby seat",
+              "Washer",
+              "Towels",
+              "Fridge",
+            ]
+
+        commentsCount:
+          type: number
+          example: 5
+
+        coordinates:
+          type: object
+          items:
+            $ref: "#/components/schemas/coordinates"
+
+        userId:
+          type: string
+          example: 6329c3d6a04ab1061c6425ea
+
+    # ---------------------- COMMENTS COMPONENTS----------------------
+
+    commentsList:
+      type: object
+
+      properties:
+        description:
+          type: string
+          example: Квартиру отличает функциональный интерьер
+
+        postDate:
+          type: string
+          example: 12.05.2022
+
+        rating:
+          type: number
+          example: 5
+
+        userId:
+          type: string
+          example: 6329c3d6a04ab1061c6425ea
+
+    createComment:
+      type: object
+
+      properties:
+        description:
+          type: string
+          example: Квартиру отличает функциональный интерьер
+
+        postDate:
+          type: string
+          example: 12.05.2022
+
+        rating:
+          type: number
+          example: 5
+
+    comment:
+      type: object
+
+      properties:
+        description:
+          type: string
+          example: Квартиру отличает функциональный интерьер
+
+        postDate:
+          type: string
+          example: 12.05.2022
+
+        rating:
+          type: number
+          example: 5
+
+        userId:
+          type: string
+          example: 6329c3d6a04ab1061c6425ea
+
+    # ---------------------- OTHERS COMPONENTS----------------------
+
+    coordinates:
+      type: object
+
+      properties:
+        latitude:
+          type: string
+          example: 45.2456730
+
+        longitude:
+          type: string
+          example: 34.3498674
