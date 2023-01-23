@@ -61,8 +61,11 @@ export class OfferEntity extends defaultClasses.TimeStamps {
 
   @prop({
     required: true,
-    min: 1,
-    max: 5,
+  })
+  public ratingCount!: number;
+
+  @prop({
+    required: true,
   })
   public rating!: number;
 

@@ -79,6 +79,9 @@ git clone SSH-адрес_вашего_форка
 - Проверка существования предложения (`exists`).
   exists(documentId: string): Promise<boolean>;
 
+- Обновление свойства «RatingCount» (`incRatingCount`)
+  incAverageRatingCount(offerId: string, rating: number, ratingCount: number, count: number): Promise<DocumentType<OfferEntity> | null>;
+
 ## 2. User
 
 - Создание пользователя (`create`);
