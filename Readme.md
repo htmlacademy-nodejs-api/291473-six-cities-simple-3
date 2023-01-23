@@ -48,9 +48,10 @@ git clone SSH-адрес_вашего_форка
 
 Репозиторий создан для обучения на профессиональном онлайн‑курсе «[Node.js. Профессиональная разработка REST API](https://htmlacademy.ru/profession/fullstack)» от [HTML Academy](https://htmlacademy.ru).
 
-## 5. Методы для реализации сценариев
+## Методы для реализации сценариев
 
-Offer
+## 1. Offer
+
 - Создание предложения (`create`);
   create(dto: CreateOfferDto): Promise<DocumentType<OfferEntity>>;
 
@@ -78,17 +79,8 @@ Offer
 - Проверка существования предложения (`exists`).
   exists(documentId: string): Promise<boolean>;
 
-Comment
-- Создание комментария (`create`);
-  create(dto: CreateCommentDto): Promise<DocumentType<CommentEntity>>;
+## 2. User
 
-- Получение комментариев по ID предложения (`findByOfferId`);
-  findByOfferId(offerId: string): Promise<DocumentType<CommentEntity>[]>;
-
-- Удаление комментариев по ID предложения (используется при удалении предложения) (`deleteByOfferId`).
-  deleteByOfferId(offerId: string): Promise<number | null>;
-
-User
 - Создание пользователя (`create`);
   create(dto: CreateUserDto, salt: string): Promise<DocumentType<UserEntity>>;
 
@@ -100,3 +92,14 @@ User
 
 - Обновление пользователя по ID (`updateById`).
   updateById(userId: string, dto: UpdateUserDto): Promise<DocumentType<UserEntity> | null>;
+
+## 3. Comment
+
+- Создание комментария (`create`);
+  create(dto: CreateCommentDto): Promise<DocumentType<CommentEntity>>;
+
+- Получение комментариев по ID предложения (`findByOfferId`);
+  findByOfferId(offerId: string): Promise<DocumentType<CommentEntity>[]>;
+
+- Удаление комментариев по ID предложения (используется при удалении предложения) (`deleteByOfferId`).
+  deleteByOfferId(offerId: string): Promise<number | null>;

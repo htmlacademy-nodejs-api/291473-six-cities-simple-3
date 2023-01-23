@@ -33,7 +33,7 @@ export default class OfferService implements OfferServiceInterface {
   public async find(): Promise<DocumentType<OfferEntity>[]> {
     return this.offerModel
       .find()
-      .linit(60)
+      .limit(60)
       .populate(['userId'])
       .exec();
   }
