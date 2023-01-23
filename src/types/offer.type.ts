@@ -11,7 +11,7 @@ export type Offer = {
   detailImagePath: string[];
   premium: boolean;
   ratingCount: number;
-  rating: number;
+  overallRating: number;
   averageRating: number;
   housingType: housingType;
   roomsNumber: number;

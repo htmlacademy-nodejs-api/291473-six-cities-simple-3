@@ -10,7 +10,7 @@ export default class CreateOfferDto {
   public detailImagePath!: string[];
   public premium!: boolean;
   public ratingCount!: number;
-  public rating!: number;
+  public overallRating!: number;
   public averageRating!: number;
   public housingType!: housingType;
   public roomsNumber!: number;

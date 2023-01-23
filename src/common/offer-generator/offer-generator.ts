@@ -1,6 +1,6 @@
 import dayjs from 'dayjs';
 import { MockData } from '../../types/mock-data.type.js';
-import { generateRandomValue, generateRandomItem, getRandomItem, getRandomItems, getRating } from '../../utils/random.js';
+import { generateRandomValue, generateRandomItem, getRandomItem, getRandomItems, getRandomOverallRating } from '../../utils/random.js';
 import { OfferGeneratorInterface } from './offer-generator.interface.js';
 import { CITIES_COORDINATES } from '../../types/city.enum.js';
 
@@ -31,8 +31,8 @@ export default class OfferGenerator implements OfferGeneratorInterface {
     const detailImagePath = getRandomItems<string>(this.mockData.detailImagePaths).join(';');
     const premium = getRandomItem<string>(PREMIUM_TYPE);
     const ratingCount = generateRandomValue(RATING_COUNT[0], RATING_COUNT[1], NUM_AFTER_DIGIT_RATING_COUNT);
-    const rating = getRating(ratingCount, RATING_NUMBER[0], RATING_NUMBER[1], NUM_AFTER_DIGIT_RATING);
-    const averageRating = rating / ratingCount;
+    const overallRating = getRandomOverallRating(ratingCount, RATING_NUMBER[0], RATING_NUMBER[1], NUM_AFTER_DIGIT_RATING);
+    const averageRating = overallRating / ratingCount;
     const housingType = getRandomItem<string>(this.mockData.housingTypes);
     const roomsNumber = generateRandomValue(ROOMS_NUMBER[0], ROOMS_NUMBER[1]);
     const guestsNuber = generateRandomValue(GUESTS_NUMBER[0], GUESTS_NUMBER[1]);
@@ -55,7 +55,7 @@ export default class OfferGenerator implements OfferGeneratorInterface {
       detailImagePath,
       premium,
       ratingCount,
-      rating,
+      overallRating,
       averageRating,
       housingType,
       roomsNumber,

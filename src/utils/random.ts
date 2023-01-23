@@ -18,7 +18,7 @@ export const getRandomItems = <T>(items: T[]): T[] => {
   return items.slice(startPosition, endPosition);
 };
 
-export const getRating = (ratingCount: number, min: number, max: number, numAfterDigit = 0) => {
+export const getRandomOverallRating = (ratingCount: number, min: number, max: number, numAfterDigit = 0) => {
   let rating = 0;
   for (let i = 0; i < ratingCount; i++) {
     rating += generateRandomValue(min, max, numAfterDigit);
