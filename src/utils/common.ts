@@ -65,3 +65,14 @@ export const createSHA256 = (line: string, salt: string): string => {
   const shaHasher = crypto.createHmac('sha256', salt);
   return shaHasher.update(line).digest('hex');
 };
+
+export const getNewRating = (overallRating: number, ratingCount: number, newRating: number) => {
+  const newOverallRating = overallRating + newRating;
+  const newRatingCount = ratingCount + 1;
+  const newAverageRating = newOverallRating / newRatingCount;
+  return {
+    'newOverallRating': newOverallRating,
+    'newAverageRating': newAverageRating,
+    'newRatingCount': newRatingCount,
+  };
+};

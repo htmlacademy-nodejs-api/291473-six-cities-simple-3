@@ -39,7 +39,8 @@ export default class Application {
     await this.databaseClient.connect(uri);
 
     // const offer = await this.offerService.findById('63ca49d88615bd4f8c616a56'); //tmp
-    const offer = await this.offerService.incAverageRatingCount('63cee03b39851cd849359973', 5); //tmp
+    const offer = await this.offerService.incAverageRatingCount('63cee03b39851cd849359958', 3); //tmp
+
     // const user = await this.userService.findByEmail('scarlett@dka.local'); //tmp
     // const comment = await this.commentService.findByOfferId('63ca49d88615bd4f8c616a56'); //tmp
 

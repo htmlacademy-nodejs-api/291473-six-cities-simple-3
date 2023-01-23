@@ -8,6 +8,7 @@ import { LoggerInterface } from '../../common/logger/logger.interface.js';
 import UpdateOfferDto from './dto/update-offer.dto.js';
 // import { DEFAULT_OFFER_COUNT } from './offer.constant.js';
 import { SortType } from '../../types/sort-type.enum.js';
+import { getNewRating } from '../../utils/common.js';
 
 @injectable()
 export default class OfferService implements OfferServiceInterface {
@@ -83,15 +84,19 @@ export default class OfferService implements OfferServiceInterface {
       .exec();
   }
 
-  public async incAverageRatingCount(offerId: string, count: number): Promise<DocumentType<OfferEntity> | null> {
+  public async incAverageRatingCount(offerId: string, newRating: number): Promise<DocumentType<OfferEntity> | null> {
+
+    const offer = await this.offerModel.findById(offerId);
+    const newRatingValue = getNewRating(offer!.overallRating, offer!.ratingCount, newRating);
+    console.log(newRatingValue);
+
     return this.offerModel
       .findByIdAndUpdate(offerId, {
-        '$inc': {
-          rating: count,
-          ratingCount: 1,
+        '$set': {
+          overallRating: newRatingValue.newOverallRating,
+          ratingCount: newRatingValue.newRatingCount,
+          averageRating: newRatingValue.newAverageRating,
         }
       }).exec();
   }
 }
-
-// db.teams.aggregate([{ $group: { _id: " $team", avg_val: { $avg: " $points " } } }])
