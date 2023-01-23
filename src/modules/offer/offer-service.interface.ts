@@ -13,4 +13,5 @@ export interface OfferServiceInterface {
   findNew(count: number): Promise<DocumentType<OfferEntity>[]>;
   findDiscussed(count: number): Promise<DocumentType<OfferEntity>[]>;
   exists(documentId: string): Promise<boolean>;
+  incRatingCount(offerId: string, count: number): Promise<DocumentType<OfferEntity> | null>;
 }

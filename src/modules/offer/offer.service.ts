@@ -82,4 +82,14 @@ export default class OfferService implements OfferServiceInterface {
       .populate(['userId'])
       .exec();
   }
+
+  public async incRatingCount(offerId: string, count: number): Promise<DocumentType<OfferEntity> | null> {
+    return this.offerModel
+      .findByIdAndUpdate(offerId, {
+        '$inc': {
+          rating: count, // ВРЕМЕННОЕ РЕШЕНИЕ, нужно получить количество поставивших оценку пользователей
+          // Количество баллов от каждого пользователя // ввести парамтер количество проголосовавших ratingCount, чтобы можно было получать среднюю оценку?
+        }
+      }).exec();
+  }
 }
