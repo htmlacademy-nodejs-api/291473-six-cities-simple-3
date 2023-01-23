@@ -71,6 +71,13 @@ export class OfferEntity extends defaultClasses.TimeStamps {
 
   @prop({
     required: true,
+    min: 1,
+    max: 5,
+  })
+  public averageRating!: number;
+
+  @prop({
+    required: true,
     type: () => String,
   })
   public housingType!: housingType;

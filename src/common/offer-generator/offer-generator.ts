@@ -32,6 +32,7 @@ export default class OfferGenerator implements OfferGeneratorInterface {
     const premium = getRandomItem<string>(PREMIUM_TYPE);
     const ratingCount = generateRandomValue(RATING_COUNT[0], RATING_COUNT[1], NUM_AFTER_DIGIT_RATING_COUNT);
     const rating = getRating(ratingCount, RATING_NUMBER[0], RATING_NUMBER[1], NUM_AFTER_DIGIT_RATING);
+    const averageRating = rating / ratingCount;
     const housingType = getRandomItem<string>(this.mockData.housingTypes);
     const roomsNumber = generateRandomValue(ROOMS_NUMBER[0], ROOMS_NUMBER[1]);
     const guestsNuber = generateRandomValue(GUESTS_NUMBER[0], GUESTS_NUMBER[1]);
@@ -55,6 +56,7 @@ export default class OfferGenerator implements OfferGeneratorInterface {
       premium,
       ratingCount,
       rating,
+      averageRating,
       housingType,
       roomsNumber,
       guestsNuber,

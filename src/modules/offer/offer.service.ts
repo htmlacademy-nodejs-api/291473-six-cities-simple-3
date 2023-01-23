@@ -93,3 +93,5 @@ export default class OfferService implements OfferServiceInterface {
       }).exec();
   }
 }
+
+// db.teams.aggregate([{ $group: { _id: " $team", avg_val: { $avg: " $points " } } }])

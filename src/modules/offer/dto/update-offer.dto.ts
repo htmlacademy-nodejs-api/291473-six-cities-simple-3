@@ -11,6 +11,7 @@ export default class UpdateOfferDto {
   public premium?: boolean;
   public ratingCount?: number;
   public rating?: number;
+  public averageRating?: number;
   public housingType?: housingType;
   public roomsNumber?: number;
   public guestsNuber?: number;
