@@ -6,11 +6,13 @@ import ConsoleLoggerService from '../common/logger/console-logger.service.js';
 import { getURI } from '../utils/db.js';
 import { UserServiceInterface } from '../modules/user/user-service.interface.js';
 import { OfferServiceInterface } from '../modules/offer/offer-service.interface.js';
+import { CommentServiceInterface } from '../modules/comment/comment-service.interface.js';
 import UserService from '../modules/user/user.service.js';
 import OfferService from '../modules/offer/offer.service.js';
 import { OfferModel } from '../modules/offer/offer.entity.js';
 import { UserModel } from '../modules/user/user.entity.js';
 import { Offer } from '../types/offer.type.js';
+// import { Comment } from '../types/comment.type.js';
 import { LoggerInterface } from '../common/logger/logger.interface.js';
 import { DatabaseInterface } from '../common/database-client/database.interface.js';
 import ConfigService from '../common/config/config.service.js';
@@ -19,6 +21,7 @@ export default class ImportCommand implements CliCommandInterface {
   public readonly name = '--import';
   private userService!: UserServiceInterface;
   private offerService!: OfferServiceInterface;
+  private commentService!: CommentServiceInterface;
   private databaseService!: DatabaseInterface;
   private logger: LoggerInterface;
   private salt!: string;
@@ -42,6 +45,11 @@ export default class ImportCommand implements CliCommandInterface {
     }, this.salt);
 
     await this.offerService.create({
+      ...offer,
+      userId: user.id,
+    });
+
+    await this.commentService.create({
       ...offer,
       userId: user.id,
     });

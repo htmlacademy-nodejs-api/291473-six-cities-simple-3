@@ -88,9 +88,6 @@ export default class OfferService implements OfferServiceInterface {
     const offer = await this.offerModel.findById(offerId);
     if (offer) {
       const newRatingValue = getNewRating(offer.overallRating, offer.ratingCount, newRating);
-
-      console.log(newRatingValue);
-
       return this.offerModel
         .findByIdAndUpdate(offerId, {
           '$set': {

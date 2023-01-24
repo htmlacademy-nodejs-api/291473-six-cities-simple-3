@@ -6,7 +6,7 @@ import { getURI } from '../utils/db.js';
 import { DatabaseInterface } from '../common/database-client/database.interface.js';
 
 // tmp - временное решение для проверки сценариев (поиск пользователя, поиск предложения и т.п.)
-import { OfferServiceInterface } from '../modules/offer/offer-service.interface.js'; //tmp
+// import { OfferServiceInterface } from '../modules/offer/offer-service.interface.js'; //tmp
 // import { UserServiceInterface } from '../modules/user/user-service.interface.js'; //tmp
 // import { CommentServiceInterface } from '../modules/comment/comment-service.interface.js'; //tmp
 
@@ -17,8 +17,8 @@ export default class Application {
     @inject(Component.ConfigInterface) private config: ConfigInterface,
     @inject(Component.DatabaseInterface) private databaseClient: DatabaseInterface,
 
-    @inject(Component.OfferServiceInterface) private offerService: OfferServiceInterface, //tmp
     // @inject(Component.UserServiceInterface) private userService: UserServiceInterface, //tmp
+    // @inject(Component.OfferServiceInterface) private offerService: OfferServiceInterface, //tmp
     // @inject(Component.CommentServiceInterface) private commentService: CommentServiceInterface //tmp
   ) { }
 
@@ -38,14 +38,18 @@ export default class Application {
 
     await this.databaseClient.connect(uri);
 
-    // const offer = await this.offerService.findById('63ca49d88615bd4f8c616a56'); //tmp
-    const offer = await this.offerService.incAverageRatingCount('63cf780b62bae8ffaa8df9e0', 5); //tmp
+    // const users = await this.userService.find(); //tmp
 
+    // for (const usersKey in users) {
+    //   console.log(users[usersKey]._id); //tmp
+    // }
+    // console.log(users);
+
+    // const offer = await this.offerService.findById('63ca49d88615bd4f8c616a56'); //tmp
+    // const offer = await this.offerService.incAverageRatingCount('63cf780b62bae8ffaa8df9e0', 5); //tmp
     // const user = await this.userService.findByEmail('scarlett@dka.local'); //tmp
     // const comment = await this.commentService.findByOfferId('63ca49d88615bd4f8c616a56'); //tmp
-
-    console.log(offer?.overallRating); //tmp
-    // console.log(user); //tmp
+    // console.log(offer); //tmp
     // console.log(comment); //tmp
 
   }
