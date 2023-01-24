@@ -58,6 +58,47 @@ export const createOffer = (row: string) => {
   } as Offer;
 };
 
+export const createComment = (row: string) => {
+  const tokens = row.replace('\n', '').split('\t');
+  const [
+    description,
+    createdDate,
+    ratingCount,
+    overallRating,
+    averageRating,
+    commentUserId] = tokens;
+  return {
+    description,
+    postDate: new Date(createdDate),
+    ratingCount: Number(ratingCount),
+    overallRating: Number(overallRating),
+    averageRating: Number(averageRating),
+    commentUserId: Number(),
+    // city,
+    // previewImagePath,
+    // detailImagePath: detailImagePath.split(';'),
+    // premium: premium === 'true',
+
+    // housingType,
+    // roomsNumber: Number(roomsNumber),
+    // guestsNuber: Number(guestsNuber),
+    // rentPrice: Number(rentPrice),
+    // amenities: amenities.split(';'),
+    // user: {
+    //   name,
+    //   email,
+    //   avatarPath,
+    //   password,
+    //   type
+    // },
+    // commentsCount: Number(commentsCount),
+    // coordinates: {
+    //   latitude: coordinates.split(';')[0],
+    //   longitude: coordinates.split(';')[1]
+  }
+} as Offer;
+};
+
 export const getErrorMessage = (error: unknown): string =>
   error instanceof Error ? error.message : '';
 

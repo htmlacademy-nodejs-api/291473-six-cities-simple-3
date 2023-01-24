@@ -85,18 +85,22 @@ export default class OfferService implements OfferServiceInterface {
   }
 
   public async incAverageRatingCount(offerId: string, newRating: number): Promise<DocumentType<OfferEntity> | null> {
-
     const offer = await this.offerModel.findById(offerId);
-    const newRatingValue = getNewRating(offer!.overallRating, offer!.ratingCount, newRating);
-    console.log(newRatingValue);
+    if (offer) {
+      const newRatingValue = getNewRating(offer.overallRating, offer.ratingCount, newRating);
 
-    return this.offerModel
-      .findByIdAndUpdate(offerId, {
-        '$set': {
-          overallRating: newRatingValue.newOverallRating,
-          ratingCount: newRatingValue.newRatingCount,
-          averageRating: newRatingValue.newAverageRating,
-        }
-      }).exec();
+      console.log(newRatingValue);
+
+      return this.offerModel
+        .findByIdAndUpdate(offerId, {
+          '$set': {
+            overallRating: newRatingValue.newOverallRating,
+            ratingCount: newRatingValue.newRatingCount,
+            averageRating: newRatingValue.newAverageRating,
+          }
+        }).exec();
+    } else {
+      return null;
+    }
   }
 }
