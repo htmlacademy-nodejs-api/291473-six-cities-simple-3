@@ -63,7 +63,7 @@ export default class ImportCommand implements CliCommandInterface {
     // console.log(comment);
     await this.commentService.create({
       ...comment,
-      description: 'testtesttesttesttesttesttesttesttesttesttesttesttest'
+      description: 'test test test'
     });
 
     // await this.commentService.create({
