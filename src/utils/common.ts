@@ -1,5 +1,5 @@
 import crypto from 'crypto';
-
+import { Comment } from '../types/comment.type.js';
 import { Offer } from '../types/offer.type.js';
 
 export const createOffer = (row: string) => {
@@ -66,6 +66,23 @@ export const createOffer = (row: string) => {
     commentOverallRating: Number(commentOverallRating),
     commentAverageRating: Number(commentAverageRating),
   } as Offer;
+};
+
+export const createComment = (row: string) => {
+  const tokens = row.replace('\n', '').split('\t');
+  const [
+    description,
+    postDate,
+    ratingCount,
+    overallRating,
+    averageRating,] = tokens;
+  return {
+    description,
+    postDate: new Date(postDate),
+    ratingCount: Number(ratingCount),
+    overallRating: Number(overallRating),
+    averageRating: Number(averageRating),
+  } as Comment;
 };
 
 export const getErrorMessage = (error: unknown): string =>

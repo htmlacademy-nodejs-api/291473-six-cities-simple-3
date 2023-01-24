@@ -1,6 +1,6 @@
 import TSVFileReader from '../common/file-reader/tsv-file-reader.js';
 import { CliCommandInterface } from './cli-command.interface.js';
-import { createOffer, getErrorMessage } from '../utils/common.js';
+import { createComment, createOffer, getErrorMessage } from '../utils/common.js';
 import DatabaseService from '../common/database-client/database.service.js';
 import ConsoleLoggerService from '../common/logger/console-logger.service.js';
 import { getURI } from '../utils/db.js';
@@ -9,13 +9,15 @@ import { OfferServiceInterface } from '../modules/offer/offer-service.interface.
 import { CommentServiceInterface } from '../modules/comment/comment-service.interface.js';
 import UserService from '../modules/user/user.service.js';
 import OfferService from '../modules/offer/offer.service.js';
+import CommentService from '../modules/comment/comment.service.js';
 import { OfferModel } from '../modules/offer/offer.entity.js';
 import { UserModel } from '../modules/user/user.entity.js';
 import { Offer } from '../types/offer.type.js';
-// import { Comment } from '../types/comment.type.js';
+import { Comment } from '../types/comment.type.js';
 import { LoggerInterface } from '../common/logger/logger.interface.js';
 import { DatabaseInterface } from '../common/database-client/database.interface.js';
 import ConfigService from '../common/config/config.service.js';
+import { CommentModel } from '../modules/comment/comment.entity.js';
 
 export default class ImportCommand implements CliCommandInterface {
   public readonly name = '--import';
@@ -35,6 +37,7 @@ export default class ImportCommand implements CliCommandInterface {
     this.config = new ConfigService(this.logger);
     this.offerService = new OfferService(this.logger, OfferModel);
     this.userService = new UserService(this.logger, UserModel);
+    this.commentService = new CommentService(this.logger, CommentModel);
     this.databaseService = new DatabaseService(this.logger);
   }
 
@@ -49,15 +52,32 @@ export default class ImportCommand implements CliCommandInterface {
       userId: user.id,
     });
 
+    // await this.commentService.create({
+    //   ...offer,
+    //   userId: user.id,
+    // });
+  }
+
+  private async saveComment(comment: Comment) {
+    // const user = await this.userService.find();
+    // console.log(comment);
     await this.commentService.create({
-      ...offer,
-      userId: user.id,
+      ...comment,
+      description: 'testtesttesttesttesttesttesttesttesttesttesttesttest'
     });
+
+    // await this.commentService.create({
+    //   ...offer,
+    //   userId: user.id,
+    // });
   }
 
   private async onLine(line: string, resolve: () => void) {
     const offer = createOffer(line);
     await this.saveOffer(offer);
+
+    const comment = createComment(line);
+    await this.saveComment(comment);
     resolve();
   }
 
