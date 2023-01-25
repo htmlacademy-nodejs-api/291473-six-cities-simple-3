@@ -4,4 +4,5 @@ export default class CreateCommentDto {
   public ratingCount!: number;
   public overallRating!: number;
   public averageRating!: number;
+  public userId!: string;
 }
