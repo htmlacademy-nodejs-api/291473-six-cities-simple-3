@@ -25,7 +25,8 @@ export default class CommentService implements CommentServiceInterface {
     return this.commentModel
       .find({ offerId })
       .limit(50)
-      .populate('userId');
+      .populate('userId')
+      .populate('offerId');
   }
 
   public async deleteByOfferId(offerId: string): Promise<number> {

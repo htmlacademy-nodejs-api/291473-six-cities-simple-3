@@ -6,5 +6,6 @@ export type Comment = {
   ratingCount: number;
   overallRating: number;
   averageRating: number;
+  offerId: string;
   userId: string;
 }

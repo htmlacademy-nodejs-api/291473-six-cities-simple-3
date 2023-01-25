@@ -74,6 +74,7 @@ export default class ImportCommand implements CliCommandInterface {
         ratingCount: createdOffer.ratingCount,
         overallRating: createdOffer.overallRating,
         averageRating: createdOffer.averageRating,
+        offerId: createdOffer.id,
         userId: user.id,
       };
       await this.saveComment(comment);
