@@ -1,4 +1,4 @@
-import { User } from './user.type.js';
+// import { User } from './user.type.js';
 
 export type Comment = {
   description: string;
@@ -6,5 +6,5 @@ export type Comment = {
   ratingCount: number;
   overallRating: number;
   averageRating: number;
-  user: User;
+  userId: string;
 }

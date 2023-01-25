@@ -5,6 +5,7 @@ import { Component } from '../../types/component.types.js';
 import { CommentEntity } from './comment.entity.js';
 import CreateCommentDto from './dto/create-comment.dto.js';
 import { LoggerInterface } from '../../common/logger/logger.interface.js';
+import { getNewRating } from '../../utils/common.js';
 
 @injectable()
 export default class CommentService implements CommentServiceInterface {
@@ -17,7 +18,7 @@ export default class CommentService implements CommentServiceInterface {
     const comment = await this.commentModel.create(dto);
     this.logger.info('New comment created');
 
-    return comment; //.populate('userId')
+    return comment.populate('userId');
   }
 
   public async findByOfferId(offerId: string): Promise<DocumentType<CommentEntity>[]> {
@@ -33,5 +34,22 @@ export default class CommentService implements CommentServiceInterface {
       .exec();
 
     return result.deletedCount;
+  }
+
+  public async incAverageRatingCount(commentId: string, newRating: number): Promise<DocumentType<CommentEntity> | null> {
+    const comment = await this.commentModel.findById(commentId);
+    if (comment) {
+      const newRatingValue = getNewRating(comment.overallRating, comment.ratingCount, newRating);
+      return this.commentModel
+        .findByIdAndUpdate(commentId, {
+          '$set': {
+            overallRating: newRatingValue.newOverallRating,
+            ratingCount: newRatingValue.newRatingCount,
+            averageRating: newRatingValue.newAverageRating,
+          }
+        }).exec();
+    } else {
+      return null;
+    }
   }
 }

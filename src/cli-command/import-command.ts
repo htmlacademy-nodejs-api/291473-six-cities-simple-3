@@ -1,6 +1,6 @@
 import TSVFileReader from '../common/file-reader/tsv-file-reader.js';
 import { CliCommandInterface } from './cli-command.interface.js';
-import { createComment, createOffer, getErrorMessage } from '../utils/common.js';
+import { createOffer, getErrorMessage } from '../utils/common.js';
 import DatabaseService from '../common/database-client/database.service.js';
 import ConsoleLoggerService from '../common/logger/console-logger.service.js';
 import { getURI } from '../utils/db.js';
@@ -47,7 +47,7 @@ export default class ImportCommand implements CliCommandInterface {
       password: this.config.get('DB_PASSWORD')// DEFAULT_USER_PASSWORD
     }, this.salt);
 
-    await this.offerService.create({
+    return await this.offerService.create({
       ...offer,
       userId: user.id,
     });
@@ -61,10 +61,27 @@ export default class ImportCommand implements CliCommandInterface {
 
   private async onLine(line: string, resolve: () => void) {
     const offer = createOffer(line);
-    await this.saveOffer(offer);
+    const user = await this.userService.findOrCreate({
+      ...offer.user,
+      password: this.config.get('DB_PASSWORD')// DEFAULT_USER_PASSWORD
+    }, this.salt);
+    const createdOffer = await this.saveOffer(offer);
 
-    const comment = createComment(line);
-    await this.saveComment(comment);
+    if (createdOffer) {
+      const comment: Comment = {
+        description: createdOffer.description,
+        postDate: createdOffer.postDate,
+        ratingCount: createdOffer.ratingCount,
+        overallRating: createdOffer.overallRating,
+        averageRating: createdOffer.averageRating,
+        userId: user.id,
+      };
+      this.logger.info('COMMENT DATA FROM DB');
+      this.logger.info(JSON.stringify(comment));
+      await this.saveComment(comment);
+    }
+    // const comment = createComment(line);
+
     resolve();
   }
 
