@@ -38,21 +38,7 @@ export default class Application {
 
     await this.databaseClient.connect(uri);
 
-    // const users = await this.userService.find(); //tmp
-
-    // for (const usersKey in users) {
-    //   console.log(users[usersKey]._id); //tmp
-    // }
-    // console.log(users);
-
-    // const offer = await this.offerService.findById('63ca49d88615bd4f8c616a56'); //tmp
-    // const offer = await this.offerService.incAverageRatingCount('63cf780b62bae8ffaa8df9e0', 5); //tmp
-    // const user = await this.userService.findByEmail('scarlett@dka.local'); //tmp
-    // const comment = await this.commentService.findByOfferId('63ca49d88615bd4f8c616a56'); //tmp
-    // console.log(offer); //tmp
-    // console.log(comment); //tmp
-
-    // Тестирует увеличение рейтинга комментария
+    // tmp Тестирует увеличение рейтинга комментария
     const comment = await this.commentService.incAverageRatingCount('63d176e9a76255c912f9a75e', 4); //tmp
     console.log(comment);
   }

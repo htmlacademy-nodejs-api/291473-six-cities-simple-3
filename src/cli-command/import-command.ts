@@ -44,7 +44,7 @@ export default class ImportCommand implements CliCommandInterface {
   private async saveOffer(offer: Offer) {
     const user = await this.userService.findOrCreate({
       ...offer.user,
-      password: this.config.get('DB_PASSWORD')// DEFAULT_USER_PASSWORD
+      password: this.config.get('DB_PASSWORD')
     }, this.salt);
 
     return await this.offerService.create({
@@ -63,7 +63,7 @@ export default class ImportCommand implements CliCommandInterface {
     const offer = createOffer(line);
     const user = await this.userService.findOrCreate({
       ...offer.user,
-      password: this.config.get('DB_PASSWORD')// DEFAULT_USER_PASSWORD
+      password: this.config.get('DB_PASSWORD')
     }, this.salt);
     const createdOffer = await this.saveOffer(offer);
 
@@ -76,11 +76,8 @@ export default class ImportCommand implements CliCommandInterface {
         averageRating: createdOffer.averageRating,
         userId: user.id,
       };
-      this.logger.info('COMMENT DATA FROM DB');
-      this.logger.info(JSON.stringify(comment));
       await this.saveComment(comment);
     }
-    // const comment = createComment(line);
 
     resolve();
   }
@@ -91,7 +88,7 @@ export default class ImportCommand implements CliCommandInterface {
   }
 
   public async execute(filename: string, login: string, password: string, host: string, dbname: string, salt: string): Promise<void> {
-    const uri = getURI(login, password, host, this.config.get('DB_PORT'), dbname); //DEFAULT_DB_PORT
+    const uri = getURI(login, password, host, this.config.get('DB_PORT'), dbname);
     this.salt = salt;
 
     await this.databaseService.connect(uri);

@@ -45,13 +45,11 @@ export default class OfferGenerator implements OfferGeneratorInterface {
     const type = getRandomItem<string>(USER_TYPE);
     const commentsCount = generateRandomValue(COMMENTS_NUMBER[0], COMMENTS_NUMBER[1]);
     const coordinates = `${CITIES_COORDINATES[city].latitude};${CITIES_COORDINATES[city].longitude}`;
-
     const commentDescription = getRandomItem<string>(this.mockData.descriptions);
     const commentCreatedDate = dayjs().subtract(generateRandomValue(FIRST_WEEK_DAY, LAST_WEEK_DAY), 'day').toISOString();
     const commentRatingCount = generateRandomValue(RATING_COUNT[0], RATING_COUNT[1], NUM_AFTER_DIGIT_RATING_COUNT);
     const commentOverallRating = getRandomOverallRating(ratingCount, RATING_NUMBER[0], RATING_NUMBER[1], NUM_AFTER_DIGIT_RATING);
     const commentAverageRating = overallRating / ratingCount;
-
 
     return [
       title,
