@@ -51,25 +51,12 @@ export default class ImportCommand implements CliCommandInterface {
       ...offer,
       userId: user.id,
     });
-
-    // await this.commentService.create({
-    //   ...offer,
-    //   userId: user.id,
-    // });
   }
 
   private async saveComment(comment: Comment) {
-    // const user = await this.userService.find();
-    // console.log(comment);
     await this.commentService.create({
-      ...comment,
-      description: 'test test test'
+      ...comment
     });
-
-    // await this.commentService.create({
-    //   ...offer,
-    //   userId: user.id,
-    // });
   }
 
   private async onLine(line: string, resolve: () => void) {
