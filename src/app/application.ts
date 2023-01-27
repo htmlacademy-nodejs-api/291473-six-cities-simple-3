@@ -46,6 +46,11 @@ export default class Application {
     this.expressApp.listen(this.config.get('PORT'));
     this.logger.info(`Server started on http://localhost:${this.config.get('PORT')}`);
 
+    //Тестовый пример //tmp
+    this.expressApp.get('/', (_req, res) => { //tmp
+      res.send('Hello'); //tmp
+    }); //tmp
+
     // tmp Тестирует увеличение рейтинга комментария
     // const comment = await this.commentService.findByOfferId('63d19988b2939be513235727'); //tmp
     // console.log(comment);
