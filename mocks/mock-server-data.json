@@ -3,14 +3,14 @@
     "titles": [
       "Дуплекс студия Шарентон 33",
       "Boulevard de Bonne Nouvelle",
-      "Делюкс",
-      "Студия Клевер",
-      "Docteur Blanche",
-      "Липовая аллея",
+      "Делюкс Студия Клевер аллея",
+      "Студия Клевер аллея",
+      "Docteur Blanche аллея",
+      "Липовая аллея Булонь-Бийанкур",
       "Студия Булонь-Бийанкур",
-      "Альма сьют",
-      "Трокадеро 5",
-      "Ламарк-Монмартр"
+      "Альма сьют Булонь-Бийанкур",
+      "Трокадеро Булонь-Бийанкур 5",
+      "Ламарк-Монмартр Трокадеро сьют"
     ],
     "descriptions": [
       "Меблированная светлая квартира-студия.",
@@ -59,15 +59,15 @@
       "hotel"
     ],
     "amenities": [
-      "Breakfast", 
-      "Air conditioning", 
-      "Laptop friendly workspace", 
-      "Baby seat", 
-      "Washer", 
-      "Towels", 
+      "Breakfast",
+      "Air conditioning",
+      "Laptop friendly workspace",
+      "Baby seat",
+      "Washer",
+      "Towels",
       "Fridge"
     ],
-    "names" : [
+    "names": [
       "Liam Johnson",
       "Noah Williams",
       "Oliver Garcia",
@@ -79,7 +79,7 @@
       "Chloe Roberts",
       "Grace Carter"
     ],
-    "emails" : [
+    "emails": [
       "snow@pisem.local",
       "fish@big.local",
       "freedom@pisem.local",

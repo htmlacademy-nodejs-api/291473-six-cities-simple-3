@@ -1,5 +1,4 @@
 import crypto from 'crypto';
-
 import { Offer } from '../types/offer.type.js';
 
 export const createOffer = (row: string) => {
@@ -12,7 +11,9 @@ export const createOffer = (row: string) => {
     previewImagePath,
     detailImagePath,
     premium,
-    rating,
+    ratingCount,
+    overallRating,
+    averageRating,
     housingType,
     roomsNumber,
     guestsNuber,
@@ -24,7 +25,12 @@ export const createOffer = (row: string) => {
     password,
     type,
     commentsCount,
-    coordinates] = tokens;
+    coordinates,
+    commentDescription,
+    commentCreatedDate,
+    commentRatingCount,
+    commentOverallRating,
+    commentAverageRating] = tokens;
   return {
     title,
     description,
@@ -33,7 +39,9 @@ export const createOffer = (row: string) => {
     previewImagePath,
     detailImagePath: detailImagePath.split(';'),
     premium: premium === 'true',
-    rating: Number(rating),
+    ratingCount: Number(ratingCount),
+    overallRating: Number(overallRating),
+    averageRating: Number(averageRating),
     housingType,
     roomsNumber: Number(roomsNumber),
     guestsNuber: Number(guestsNuber),
@@ -50,7 +58,12 @@ export const createOffer = (row: string) => {
     coordinates: {
       latitude: coordinates.split(';')[0],
       longitude: coordinates.split(';')[1]
-    }
+    },
+    commentDescription,
+    commentCreatedDate: new Date(commentCreatedDate),
+    commentRatingCount: Number(commentRatingCount),
+    commentOverallRating: Number(commentOverallRating),
+    commentAverageRating: Number(commentAverageRating),
   } as Offer;
 };
 
@@ -60,4 +73,15 @@ export const getErrorMessage = (error: unknown): string =>
 export const createSHA256 = (line: string, salt: string): string => {
   const shaHasher = crypto.createHmac('sha256', salt);
   return shaHasher.update(line).digest('hex');
+};
+
+export const getNewRating = (overallRating: number, ratingCount: number, newRating: number) => {
+  const newOverallRating = overallRating + newRating;
+  const newRatingCount = ratingCount + 1;
+  const newAverageRating = newOverallRating / newRatingCount;
+  return {
+    'newOverallRating': newOverallRating,
+    'newAverageRating': newAverageRating,
+    'newRatingCount': newRatingCount,
+  };
 };

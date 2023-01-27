@@ -47,3 +47,62 @@ git clone SSH-адрес_вашего_форка
 <a href="https://htmlacademy.ru/profession/fullstack"><img align="left" width="50" height="50" title="HTML Academy" src="https://up.htmlacademy.ru/static/img/intensive/nodejs/logo-for-github-2.png"></a>
 
 Репозиторий создан для обучения на профессиональном онлайн‑курсе «[Node.js. Профессиональная разработка REST API](https://htmlacademy.ru/profession/fullstack)» от [HTML Academy](https://htmlacademy.ru).
+
+## Методы для реализации сценариев
+
+## 1. Offer
+
+- Создание предложения (`create`);
+  create(dto: CreateOfferDto): Promise<DocumentType<OfferEntity>>;
+
+- Получение предложения по ID (`findById`);
+  findById(offerId: string): Promise<DocumentType<OfferEntity> | null>;
+  
+- Получение списка предложений (`find`);
+  find(): Promise<DocumentType<OfferEntity>[]>;
+
+- Удаление предложения по идентификатору (`deleteById`);
+  deleteById(offerId: string): Promise<DocumentType<OfferEntity> | null>;
+
+- Обновление предложения (`updateById`);
+  updateById(offerId: string, dto: UpdateOfferDto): Promise<DocumentType<OfferEntity> | null>;
+
+- Получение списка новых предложений (`findNew`);
+  findNew(count: number): Promise<DocumentType<OfferEntity>[]>;
+
+- Получение списка обсуждаемых предложений (`findDiscussed`);
+  findDiscussed(count: number): Promise<DocumentType<OfferEntity>[]>;
+
+- Обновление свойства «CommentsCount» (`incCommentCount`);
+  incCommentCount(offerId: string): Promise<DocumentType<OfferEntity> | null>;
+
+- Проверка существования предложения (`exists`).
+  exists(documentId: string): Promise<boolean>;
+
+- Обновление свойства «RatingCount» (`incRatingCount`)
+  incAverageRatingCount(offerId: string, rating: number, ratingCount: number, count: number): Promise<DocumentType<OfferEntity> | null>;
+
+## 2. User
+
+- Создание пользователя (`create`);
+  create(dto: CreateUserDto, salt: string): Promise<DocumentType<UserEntity>>;
+
+- Получение пользователя по Email (`findByEmail`);
+  findByEmail(email: string): Promise<DocumentType<UserEntity> | null>;
+
+- Получение / создание пользователя (`findOrCreate`);
+  findOrCreate(dto: CreateUserDto, salt: string): Promise<DocumentType<UserEntity>>;
+
+- Обновление пользователя по ID (`updateById`).
+  updateById(userId: string, dto: UpdateUserDto): Promise<DocumentType<UserEntity> | null>;
+
+## 3. Comment
+
+- Создание комментария (`create`);
+  create(dto: CreateCommentDto): Promise<DocumentType<CommentEntity>>;
+
+- Получение комментариев по ID предложения (`findByOfferId`);
+  findByOfferId(offerId: string): Promise<DocumentType<CommentEntity>[]>;
+
+- Удаление комментариев по ID предложения (используется при удалении предложения) (`deleteByOfferId`).
+  deleteByOfferId(offerId: string): Promise<number | null>;

@@ -1,11 +1,13 @@
 import dayjs from 'dayjs';
 import { MockData } from '../../types/mock-data.type.js';
-import { generateRandomValue, generateRandomItem, getRandomItem, getRandomItems } from '../../utils/random.js';
+import { generateRandomValue, generateRandomItem, getRandomItem, getRandomItems, getRandomOverallRating } from '../../utils/random.js';
 import { OfferGeneratorInterface } from './offer-generator.interface.js';
-import {CITIES_COORDINATES} from '../../types/city.enum.js';
+import { CITIES_COORDINATES } from '../../types/city.enum.js';
 
 const FIRST_WEEK_DAY = 1;
 const LAST_WEEK_DAY = 7;
+const RATING_COUNT = [1, 10];
+const NUM_AFTER_DIGIT_RATING_COUNT = 0;
 const RATING_NUMBER = [1, 5];
 const NUM_AFTER_DIGIT_RATING = 1;
 const PREMIUM_TYPE = ['true', 'false'];
@@ -18,7 +20,7 @@ const USER_TYPE = ['Regular', 'Pro'];
 const COMMENTS_NUMBER = [0, 20];
 
 export default class OfferGenerator implements OfferGeneratorInterface {
-  constructor(private readonly mockData: MockData) {}
+  constructor(private readonly mockData: MockData) { }
 
   public generate(): string {
     const title = getRandomItem<string>(this.mockData.titles);
@@ -28,7 +30,9 @@ export default class OfferGenerator implements OfferGeneratorInterface {
     const previewImagePath = getRandomItem<string>(this.mockData.previewImagePaths);
     const detailImagePath = getRandomItems<string>(this.mockData.detailImagePaths).join(';');
     const premium = getRandomItem<string>(PREMIUM_TYPE);
-    const rating = generateRandomValue(RATING_NUMBER[0], RATING_NUMBER[1], NUM_AFTER_DIGIT_RATING);
+    const ratingCount = generateRandomValue(RATING_COUNT[0], RATING_COUNT[1], NUM_AFTER_DIGIT_RATING_COUNT);
+    const overallRating = getRandomOverallRating(ratingCount, RATING_NUMBER[0], RATING_NUMBER[1], NUM_AFTER_DIGIT_RATING);
+    const averageRating = overallRating / ratingCount;
     const housingType = getRandomItem<string>(this.mockData.housingTypes);
     const roomsNumber = generateRandomValue(ROOMS_NUMBER[0], ROOMS_NUMBER[1]);
     const guestsNuber = generateRandomValue(GUESTS_NUMBER[0], GUESTS_NUMBER[1]);
@@ -41,6 +45,11 @@ export default class OfferGenerator implements OfferGeneratorInterface {
     const type = getRandomItem<string>(USER_TYPE);
     const commentsCount = generateRandomValue(COMMENTS_NUMBER[0], COMMENTS_NUMBER[1]);
     const coordinates = `${CITIES_COORDINATES[city].latitude};${CITIES_COORDINATES[city].longitude}`;
+    const commentDescription = getRandomItem<string>(this.mockData.descriptions);
+    const commentCreatedDate = dayjs().subtract(generateRandomValue(FIRST_WEEK_DAY, LAST_WEEK_DAY), 'day').toISOString();
+    const commentRatingCount = generateRandomValue(RATING_COUNT[0], RATING_COUNT[1], NUM_AFTER_DIGIT_RATING_COUNT);
+    const commentOverallRating = getRandomOverallRating(ratingCount, RATING_NUMBER[0], RATING_NUMBER[1], NUM_AFTER_DIGIT_RATING);
+    const commentAverageRating = overallRating / ratingCount;
 
     return [
       title,
@@ -50,7 +59,9 @@ export default class OfferGenerator implements OfferGeneratorInterface {
       previewImagePath,
       detailImagePath,
       premium,
-      rating,
+      ratingCount,
+      overallRating,
+      averageRating,
       housingType,
       roomsNumber,
       guestsNuber,
@@ -62,7 +73,12 @@ export default class OfferGenerator implements OfferGeneratorInterface {
       password,
       type,
       commentsCount,
-      coordinates
+      coordinates,
+      commentDescription,
+      commentCreatedDate,
+      commentRatingCount,
+      commentOverallRating,
+      commentAverageRating,
     ].join('\t');
   }
 }

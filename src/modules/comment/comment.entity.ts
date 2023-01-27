@@ -1,6 +1,7 @@
 import { defaultClasses, Ref } from '@typegoose/typegoose';
 import typegoose, { getModelForClass } from '@typegoose/typegoose';
 import { UserEntity } from '../user/user.entity.js';
+import { OfferEntity } from '../offer/offer.entity.js';
 
 const { prop, modelOptions } = typegoose;
 
@@ -28,10 +29,26 @@ export class CommentEntity extends defaultClasses.TimeStamps {
 
   @prop({
     required: true,
+  })
+  public ratingCount!: number;
+
+  @prop({
+    required: true,
+  })
+  public overallRating!: number;
+
+  @prop({
+    required: true,
     min: 1,
     max: 5,
   })
-  public rating!: number;
+  public averageRating!: number;
+
+  @prop({
+    ref: OfferEntity,
+    required: true
+  })
+  public offerId!: Ref<OfferEntity>;
 
   @prop({
     ref: UserEntity,

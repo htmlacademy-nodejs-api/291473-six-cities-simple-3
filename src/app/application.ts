@@ -5,12 +5,21 @@ import { Component } from '../types/component.types.js';
 import { getURI } from '../utils/db.js';
 import { DatabaseInterface } from '../common/database-client/database.interface.js';
 
+// tmp - временное решение для проверки сценариев (поиск пользователя, поиск предложения и т.п.)
+// import { OfferServiceInterface } from '../modules/offer/offer-service.interface.js'; //tmp
+// import { UserServiceInterface } from '../modules/user/user-service.interface.js'; //tmp
+// import { CommentServiceInterface } from '../modules/comment/comment-service.interface.js'; //tmp
+
 @injectable()
 export default class Application {
   constructor(
     @inject(Component.LoggerInterface) private logger: LoggerInterface,
     @inject(Component.ConfigInterface) private config: ConfigInterface,
-    @inject(Component.DatabaseInterface) private databaseClient: DatabaseInterface
+    @inject(Component.DatabaseInterface) private databaseClient: DatabaseInterface,
+
+    // @inject(Component.UserServiceInterface) private userService: UserServiceInterface, //tmp
+    // @inject(Component.OfferServiceInterface) private offerService: OfferServiceInterface, //tmp
+    // @inject(Component.CommentServiceInterface) private commentService: CommentServiceInterface //tmp
   ) { }
 
   public async init() {
@@ -28,5 +37,9 @@ export default class Application {
     );
 
     await this.databaseClient.connect(uri);
+
+    // tmp Тестирует увеличение рейтинга комментария
+    // const comment = await this.commentService.findByOfferId('63d19988b2939be513235727'); //tmp
+    // console.log(comment);
   }
 }
