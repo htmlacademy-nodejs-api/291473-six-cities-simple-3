@@ -19,53 +19,23 @@ Content-Type: application/json
 
 {
   "title": "Тест Тест Тест",
-
-  "description": "Тест Тест Тест",
-
-  "postDate": 2023-01-23T19:06:57.484Z,
-
-  "city": "Hamburg",
-
+  "description": "Тест Тест Тест Тест Тест Тест Тест Тест Тест",
+  "postDate": "2023-01-23T19:06:57.484Z",
+  "city": "Amsterdam",
   "previewImagePath": "preview-image4.jpg",
-
-  "detailImagePath": [
-      'detail-image6.jpg',
-      'detail-image7.jpg',
-      'detail-image8.jpg',
-      'detail-image9.jpg',
-      'detail-image10.jpg'
-    ],
-
+  "detailImagePath": "detail-image6.jpg, detail-image7.jpg, detail-image8.jpg, detail-image9.jpg, detail-image10.jpg",
   "premium": true,
-
   "ratingCount": 1,
-
   "overallRating": 5,
-
-  "averageRatinge": 5,
-
+  "averageRating": 5,
   "housingType": "room",
-
-  "roomsNumber": "3",
-
-  "guestsNuber": "5",
-
+  "roomsNumber": 3,
+  "guestsNuber": 5,
   "rentPrice": 50000,
-
-  "amenities": [
-      'Laptop friendly workspace',
-      'Baby seat',
-      'Washer',
-      'Towels'
-  ],
-
+  "amenities":"Laptop friendly workspace, Baby seat, Washer, Towels",
   "commentsCount": 0,
-
-  "coordinates": {
-      latitude: '51.225402',
-      longitude: '6.776314'
-  },
-
-  "userId": "63d19988b2939be513235724",
+  "coordinates": "52.370216, 4.895168",
+  "userId": "63d19988b2939be513235724"
 }
+
 ###
