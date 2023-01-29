@@ -6,6 +6,9 @@ import { LoggerInterface } from '../../common/logger/logger.interface.js';
 import { HttpMethod } from '../../types/http-method.enum.js';
 import { OfferServiceInterface } from './offer-service.interface.js';
 import { StatusCodes } from 'http-status-codes';
+import OfferResponse from './response/offer.response.js';
+import { fillDTO } from '../../utils/common.js';
+import CreateOfferDto from './dto/create-offer.dto.js';
 
 @injectable()
 export default class OfferController extends Controller {
@@ -27,10 +30,26 @@ export default class OfferController extends Controller {
 
   public async index(_req: Request, res: Response): Promise<void> {
     const offers = await this.offerService.find();
-    this.send(res, StatusCodes.OK, offers);
+    const offerResponse = fillDTO(OfferResponse, offers);
+    this.send(res, StatusCodes.OK, offerResponse);
   }
 
-  public create(_req: Request, _res: Response): void {
-    // Код обработчика
+  public async create(
+    { body }: Request<Record<string, unknown>, Record<string, unknown>, CreateOfferDto>,
+    res: Response): Promise<void> {
+
+    // const existOffer = await this.offerService.findByOfferName(body.name);
+    // if (existOffer) {
+    //   const errorMessage = `Offer with name «${body.name}» exists.`;
+    //   this.send(res, StatusCodes.UNPROCESSABLE_ENTITY, { error: errorMessage });
+    //   return this.logger.error(errorMessage);
+    // }
+
+    const result = await this.offerService.create(body);
+    this.send(
+      res,
+      StatusCodes.CREATED,
+      fillDTO(OfferResponse, result)
+    );
   }
 }
