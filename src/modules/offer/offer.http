@@ -1,10 +1,5 @@
 # Предложения
 
-## Доступные варианты запросов
-http://localhost:31337/offers.http
-
-###
-
 ## Получить список предложений
 
 GET http://localhost:31337/offers HTTP/1.1
@@ -23,7 +18,13 @@ Content-Type: application/json
   "postDate": "2023-01-23T19:06:57.484Z",
   "city": "Amsterdam",
   "previewImagePath": "preview-image4.jpg",
-  "detailImagePath": "detail-image6.jpg, detail-image7.jpg, detail-image8.jpg, detail-image9.jpg, detail-image10.jpg",
+  "detailImagePath": [
+    "detail-image6.jpg", 
+    "detail-image7.jpg", 
+    "detail-image8.jpg", 
+    "detail-image9.jpg", 
+    "detail-image10.jpg"
+    ],
   "premium": true,
   "ratingCount": 1,
   "overallRating": 5,
@@ -32,10 +33,62 @@ Content-Type: application/json
   "roomsNumber": 3,
   "guestsNuber": 5,
   "rentPrice": 50000,
-  "amenities":"Laptop friendly workspace, Baby seat, Washer, Towels",
+  "amenities": ["Laptop friendly workspace", "Laptop friendly workspace", "Baby seat", "Washer", "Towels", "Fridge"],
   "commentsCount": 0,
-  "coordinates": "52.370216, 4.895168",
+  "coordinates":{
+        "latitude": "52.370216",
+        "longitude": "4.895168"
+  },
   "userId": "63d19988b2939be513235724"
 }
+
+###
+
+## Редактирование предложения
+
+POST http://localhost:31337/offers/163d19988b2939be513235740 HTTP/1.1
+Content-Type: application/json
+
+{
+  "description": "Новое описание новое описание новое описание новое описание",
+    "title": "Тест Тест Тест",
+  "postDate": "2023-01-23T19:06:57.484Z",
+  "city": "Amsterdam",
+  "previewImagePath": "preview-image4.jpg",
+  "detailImagePath": [
+    "detail-image6.jpg", 
+    "detail-image7.jpg", 
+    "detail-image8.jpg", 
+    "detail-image9.jpg", 
+    "detail-image10.jpg"
+    ],
+  "premium": true,
+  "ratingCount": 1,
+  "overallRating": 5,
+  "averageRating": 5,
+  "housingType": "room",
+  "roomsNumber": 3,
+  "guestsNuber": 5,
+  "rentPrice": 50000,
+  "amenities": ["Laptop friendly workspace", "Laptop friendly workspace", "Baby seat", "Washer", "Towels", "Fridge"],
+  "commentsCount": 0,
+  "coordinates":{
+        "latitude": "52.370216",
+        "longitude": "4.895168"
+  }
+}
+
+###
+
+## Удаление предложения
+
+DELETE http://localhost:31337/offers/63d19988b2939be513235740 HTTP/1.1
+
+###
+
+## Получение информации о конкретном предложении
+
+GET http://localhost:31337/offers/63d19988b2939be513235740 HTTP/1.1
+Content-Type: application/json
 
 ###
