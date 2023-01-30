@@ -10,6 +10,7 @@ import OfferResponse from './response/offer.response.js';
 import { fillDTO } from '../../utils/common.js';
 import CreateOfferDto from './dto/create-offer.dto.js';
 import UpdateOfferDto from './dto/update-offer.dto.js';
+import HttpError from '../../common/errors/http-error.js';
 
 @injectable()
 export default class OfferController extends Controller {
@@ -26,11 +27,19 @@ export default class OfferController extends Controller {
     this.addRoute({ path: '/:offerId', method: HttpMethod.Post, handler: this.updateById });
     this.addRoute({ path: '/:offerId', method: HttpMethod.Delete, handler: this.deleteById });
     this.addRoute({ path: '/:offerId', method: HttpMethod.Get, handler: this.findById });
-
   }
 
   public async index(_req: Request, res: Response): Promise<void> {
     const offers = await this.offerService.find();
+
+    if (offers?.length === 0) {
+      throw new HttpError(
+        StatusCodes.UNPROCESSABLE_ENTITY,
+        'Offers not exists.',
+        'OfferController'
+      );
+    }
+
     const offerResponse = fillDTO(OfferResponse, offers);
     this.send(res, StatusCodes.OK, offerResponse);
   }
@@ -51,14 +60,32 @@ export default class OfferController extends Controller {
     res: Response): Promise<void> {
 
     const result = await this.offerService.updateById(params.offerId as string, body);
+    if (!result) {
+      throw new HttpError(
+        StatusCodes.UNPROCESSABLE_ENTITY,
+        `Offer with ID «${params.offerId}» not exists.`,
+        'OfferController'
+      );
+    }
+
     this.send(
       res,
-      StatusCodes.CREATED,
+      StatusCodes.OK,
       fillDTO(OfferResponse, result)
     );
   }
 
   public async deleteById(req: Request, res: Response): Promise<void> {
+
+    const existOffer = await this.offerService.deleteById(req.params.offerId as string);
+    if (!existOffer) {
+      throw new HttpError(
+        StatusCodes.UNPROCESSABLE_ENTITY,
+        `Offer with ID «${req.params.offerId}» not exists.`,
+        'OfferController'
+      );
+    }
+
     await this.offerService.deleteById(req.params.offerId as string);
     this.send(res, StatusCodes.OK, null);
   }
@@ -66,6 +93,14 @@ export default class OfferController extends Controller {
   public async findById(req: Request, res: Response): Promise<void> {
 
     const offer = await this.offerService.findById(req.params.offerId);
+    if (!offer) {
+      throw new HttpError(
+        StatusCodes.UNPROCESSABLE_ENTITY,
+        `Offer with ID «${req.params.offerId}» not exists.`,
+        'OfferController'
+      );
+    }
+
     const offerResponse = fillDTO(OfferResponse, offer);
     this.send(res, StatusCodes.OK, offerResponse);
   }

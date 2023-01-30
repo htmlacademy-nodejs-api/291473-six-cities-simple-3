@@ -7,6 +7,13 @@ Content-Type: application/json
 
 ###
 
+## Получить предложение по ID
+
+GET http://localhost:31337/offers/63d758b4ecfecfbfdaff59c7 HTTP/1.1
+Content-Type: application/json
+
+###
+
 ## Создать новое предложение
 
 POST http://localhost:31337/offers HTTP/1.1
@@ -46,7 +53,7 @@ Content-Type: application/json
 
 ## Редактирование предложения
 
-POST http://localhost:31337/offers/163d19988b2939be513235740 HTTP/1.1
+POST http://localhost:31337/offers/63d75b38f9cb7c774aab25e3 HTTP/1.1
 Content-Type: application/json
 
 {
