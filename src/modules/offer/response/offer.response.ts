@@ -3,13 +3,16 @@ import UserResponse from '../../user/response/user.response.js';
 
 export default class OfferResponse {
   @Expose()
+  public id!: string;
+
+  @Expose()
   public title!: string;
 
   @Expose()
   public description!: string;
 
   @Expose()
-  public postDate!: Date;
+  public postDate!: string;
 
   @Expose()
   public city!: string;
