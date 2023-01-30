@@ -1,4 +1,6 @@
 import crypto from 'crypto';
+import { plainToInstance } from 'class-transformer';
+import { ClassConstructor } from 'class-transformer/types/interfaces/class-constructor.type.js';
 import { Offer } from '../types/offer.type.js';
 
 export const createOffer = (row: string) => {
@@ -85,3 +87,10 @@ export const getNewRating = (overallRating: number, ratingCount: number, newRati
     'newRatingCount': newRatingCount,
   };
 };
+
+export const fillDTO = <T, V>(someDto: ClassConstructor<T>, plainObject: V) =>
+  plainToInstance(someDto, plainObject, { excludeExtraneousValues: true });
+
+export const createErrorObject = (message: string) => ({
+  error: message,
+});
