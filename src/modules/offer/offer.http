@@ -53,7 +53,7 @@ Content-Type: application/json
 
 ## Список комментариев к предложению
 
-GET http://localhost:31337/offers/63d19988b2939be513235757/comments HTTP/1.1
+GET http://localhost:31337/offers/63d75b38f9cb7c774aab25dc/comments HTTP/1.1
 
 ###
 
