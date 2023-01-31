@@ -1,7 +1,8 @@
 import { Coordinates } from '../../../types/coordinates.type.js';
 import { housingType } from '../../../types/housing-type.enum.js';
 import { City } from '../../../types/city.enum.js';
-import { ArrayMaxSize, ArrayMinSize, IsArray, IsBoolean, IsDateString, IsEnum, IsInt, IsMongoId, IsNumber, IsString, Max, MaxLength, Min, MinLength, Validate } from 'class-validator';
+import { ArrayMaxSize, ArrayMinSize, IsArray, IsBoolean, IsDateString, IsEnum, IsInt, IsMongoId, IsNumber, IsString, Max, MaxLength, Min, MinLength } from 'class-validator';
+// Validate
 import { Amenities } from '../../../types/amenities.enum.js';
 
 export default class CreateOfferDto {
