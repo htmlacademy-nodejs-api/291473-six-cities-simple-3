@@ -4,7 +4,7 @@
 
 ## Предложение по идентификатору
 
-GET http://localhost:31337/offers/63d19988b2939be513235739 HTTP/1.1
+GET http://localhost:31337/offers/63d1119988b2939be5132357391 HTTP/1.1
 
 ###
 
@@ -96,5 +96,17 @@ Content-Type: application/json
         "longitude": "4.895168"
   }
 }
+
+###
+
+## Новые предложения
+
+GET http://localhost:31337/offers/bundles/new HTTP/1.1
+
+###
+
+## Обсуждаемые предложения
+
+GET http://localhost:31337/offers/bundles/discussed HTTP/1.1
 
 ###
