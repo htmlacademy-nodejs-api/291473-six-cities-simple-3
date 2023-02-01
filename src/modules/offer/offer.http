@@ -1,20 +1,20 @@
 # Предложения
 
-## Получение списка предложений
+###
+
+## Предложение по идентификатору
+
+GET http://localhost:31337/offers/63d1119988b2939be5132357391 HTTP/1.1
+
+###
+
+## Список предложений
 
 GET http://localhost:31337/offers HTTP/1.1
-Content-Type: application/json
 
 ###
 
-## Получение информации о конкретном предложении
-
-GET http://localhost:31337/offers/63d19988b2939be513235740 HTTP/1.1
-Content-Type: application/json
-
-###
-
-## Создание нового предложения
+## Создание предложения
 
 POST http://localhost:31337/offers HTTP/1.1
 Content-Type: application/json
@@ -23,37 +23,50 @@ Content-Type: application/json
   "title": "Тест Тест Тест",
   "description": "Тест Тест Тест Тест Тест Тест Тест Тест Тест",
   "postDate": "2023-01-23T19:06:57.484Z",
-  "city": "Amsterdam",
+  "city": "Cologne",
   "previewImagePath": "preview-image4.jpg",
   "detailImagePath": [
     "detail-image6.jpg", 
     "detail-image7.jpg", 
     "detail-image8.jpg", 
     "detail-image9.jpg", 
-    "detail-image10.jpg"
+    "detail-image10.jpg",
+     "detail-image9.jpg"
     ],
   "premium": true,
   "ratingCount": 1,
   "overallRating": 5,
   "averageRating": 5,
-  "housingType": "room",
+  "housingType": "Room",
   "roomsNumber": 3,
   "guestsNuber": 5,
   "rentPrice": 50000,
   "amenities": ["Laptop friendly workspace", "Laptop friendly workspace", "Baby seat", "Washer", "Towels", "Fridge"],
   "commentsCount": 0,
   "coordinates":{
-        "latitude": "52.370216",
-        "longitude": "4.895168"
+        "latitude": "50.938361",
+        "longitude": "6.959974"
   },
   "userId": "63d19988b2939be513235724"
 }
 
 ###
 
-## Редактирование предложения
+## Список комментариев к предложению
 
-POST http://localhost:31337/offers/63d75b38f9cb7c774aab25e3 HTTP/1.1
+GET http://localhost:31337/offers/63d75b38f9cb7c774aab25dc/comments HTTP/1.1
+
+###
+
+## Удаление предложения
+
+DELETE http://localhost:31337/offers/63d19988b2939be513235730 HTTP/1.1
+
+###
+
+## Обновление предложения
+
+PATCH http://localhost:31337/offers/63d19988b2939be513235739 HTTP/1.1
 Content-Type: application/json
 
 {
@@ -87,8 +100,14 @@ Content-Type: application/json
 
 ###
 
-## Удаление предложения
+## Новые предложения
 
-DELETE http://localhost:31337/offers/63d19988b2939be513235740 HTTP/1.1
+GET http://localhost:31337/offers/bundles/new HTTP/1.1
+
+###
+
+## Обсуждаемые предложения
+
+GET http://localhost:31337/offers/bundles/discussed HTTP/1.1
 
 ###

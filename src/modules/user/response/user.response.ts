@@ -12,7 +12,4 @@ export default class UserResponse {
 
   @Expose()
   public type!: string;
-
-  @Expose()
-  public password!: string;
 }
