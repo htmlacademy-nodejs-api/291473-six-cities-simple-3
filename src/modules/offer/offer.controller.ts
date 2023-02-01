@@ -1,12 +1,10 @@
 import { inject, injectable } from 'inversify';
-// import { StatusCodes } from 'http-status-codes';
 import { Request, Response } from 'express';
 import * as core from 'express-serve-static-core';
 import { Controller } from '../../common/controller/controller.js';
 import { Component } from '../../types/component.types.js';
 import { LoggerInterface } from '../../common/logger/logger.interface.js';
 import { HttpMethod } from '../../types/http-method.enum.js';
-// import HttpError from '../../common/errors/http-error.js';
 import { OfferServiceInterface } from './offer-service.interface.js';
 import { fillDTO } from '../../utils/common.js';
 import OfferResponse from './response/offer.response.js';
@@ -37,7 +35,6 @@ export default class OfferController extends Controller {
       path: '/:offerId',
       method: HttpMethod.Get,
       handler: this.show,
-      // middlewares: [new ValidateObjectIdMiddleware('offerId')]
       middlewares: [
         new ValidateObjectIdMiddleware('offerId'),
         new DocumentExistsMiddleware(this.offerService, 'Offer', 'offerId'),
@@ -58,7 +55,6 @@ export default class OfferController extends Controller {
       path: '/:offerId',
       method: HttpMethod.Delete,
       handler: this.delete,
-      // middlewares: [new ValidateObjectIdMiddleware('offerId')]
       middlewares: [
         new ValidateObjectIdMiddleware('offerId'),
         new DocumentExistsMiddleware(this.offerService, 'Offer', 'offerId'),
@@ -70,7 +66,6 @@ export default class OfferController extends Controller {
       handler: this.update,
       middlewares: [
         new ValidateObjectIdMiddleware('offerId'),
-        // new ValidateDtoMiddleware(UpdateOfferDto)
         new ValidateDtoMiddleware(UpdateOfferDto),
         new DocumentExistsMiddleware(this.offerService, 'Offer', 'offerId'),
       ]
