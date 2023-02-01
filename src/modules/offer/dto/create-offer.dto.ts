@@ -1,9 +1,10 @@
 import { Coordinates } from '../../../types/coordinates.type.js';
 import { housingType } from '../../../types/housing-type.enum.js';
 import { City } from '../../../types/city.enum.js';
-import { ArrayMaxSize, ArrayMinSize, IsArray, IsBoolean, IsDateString, IsEnum, IsInt, IsMongoId, IsNumber, IsString, Max, MaxLength, Min, MinLength } from 'class-validator';
-// Validate
+import { ArrayMaxSize, ArrayMinSize, IsArray, IsBoolean, IsDateString, IsEnum, IsInt, IsMongoId, IsNumber, IsString, Max, MaxLength, Min, MinLength, Validate } from 'class-validator';
 import { Amenities } from '../../../types/amenities.enum.js';
+import { ValideteCityCoords } from '../../../common/middlewares/validate-coords.middleware.js';
+// import { CITIES_COORDINATES } from '../../../types/city.enum.js';
 
 export default class CreateOfferDto {
   @MinLength(10, { message: 'Minimum title length must be 10' })
@@ -68,35 +69,9 @@ export default class CreateOfferDto {
   @IsInt({ message: '$property must be an integer' })
   public commentsCount!: number;
 
-  // Нужен валидатор для проверки коодинат (по ТЗ город и коордитаны четко соответствуют друг другу)!!>>>>>>>>>>>>>>> Добавить валидатор
+  @Validate(ValideteCityCoords)
   public coordinates!: Coordinates;
 
   @IsMongoId({ message: '$property field must contain a valid id' })
   public userId!: string;
 }
-
-
-// import { Coordinates } from '../../../types/coordinates.type.js';
-// import { housingType } from '../../../types/housing-type.enum.js';
-// import { IsArray, IsDateString, IsEnum, IsInt, IsMongoId, Max, MaxLength, Min, MinLength } from 'class-validator';
-
-// export default class CreateOfferDto {
-//   public title!: string;
-//   public description!: string;
-//   public postDate!: Date;
-//   public city!: string;
-//   public previewImagePath!: string;
-//   public detailImagePath!: string[];
-//   public premium!: boolean;
-//   public ratingCount!: number;
-//   public overallRating!: number;
-//   public averageRating!: number;
-//   public housingType!: housingType;
-//   public roomsNumber!: number;
-//   public guestsNuber!: number;
-//   public rentPrice!: number;
-//   public amenities!: string[];
-//   public commentsCount!: number;
-//   public coordinates!: Coordinates;
-//   public userId!: string;
-// }

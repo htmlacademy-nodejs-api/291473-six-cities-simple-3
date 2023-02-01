@@ -43,7 +43,9 @@ export default class OfferController extends Controller {
       path: '/',
       method: HttpMethod.Post,
       handler: this.create,
-      middlewares: [new ValidateDtoMiddleware(CreateOfferDto)]
+      middlewares: [
+        new ValidateDtoMiddleware(CreateOfferDto),
+      ]
     });
     this.addRoute({ path: '/bundles/new', method: HttpMethod.Get, handler: this.getNew });
     this.addRoute({ path: '/bundles/discussed', method: HttpMethod.Get, handler: this.getDiscussed });

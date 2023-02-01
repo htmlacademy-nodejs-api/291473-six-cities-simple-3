@@ -23,7 +23,7 @@ Content-Type: application/json
   "title": "Тест Тест Тест",
   "description": "Тест Тест Тест Тест Тест Тест Тест Тест Тест",
   "postDate": "2023-01-23T19:06:57.484Z",
-  "city": "Amsterdam",
+  "city": "Cologne",
   "previewImagePath": "preview-image4.jpg",
   "detailImagePath": [
     "detail-image6.jpg", 
@@ -44,8 +44,8 @@ Content-Type: application/json
   "amenities": ["Laptop friendly workspace", "Laptop friendly workspace", "Baby seat", "Washer", "Towels", "Fridge"],
   "commentsCount": 0,
   "coordinates":{
-        "latitude": "52.370216",
-        "longitude": "4.895168"
+        "latitude": "50.938361",
+        "longitude": "6.959974"
   },
   "userId": "63d19988b2939be513235724"
 }
