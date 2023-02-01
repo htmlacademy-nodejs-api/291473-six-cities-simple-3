@@ -6,6 +6,7 @@ import { CommentEntity } from './comment.entity.js';
 import CreateCommentDto from './dto/create-comment.dto.js';
 import { LoggerInterface } from '../../common/logger/logger.interface.js';
 import { getNewRating } from '../../utils/common.js';
+import { OfferDefaults } from '../offer/offer.constant.js';
 
 @injectable()
 export default class CommentService implements CommentServiceInterface {
@@ -24,7 +25,7 @@ export default class CommentService implements CommentServiceInterface {
   public async findByOfferId(offerId: string): Promise<DocumentType<CommentEntity>[]> {
     return this.commentModel
       .find({ offerId })
-      .limit(50)
+      .limit(OfferDefaults.commentsCount)
       .populate('userId')
       .populate('offerId');
   }

@@ -13,7 +13,7 @@ import UpdateOfferDto from './dto/update-offer.dto.js';
 import { CommentServiceInterface } from '../comment/comment-service.interface.js';
 import CommentResponse from '../comment/response/comment.response.js';
 import { ValidateObjectIdMiddleware } from '../../common/middlewares/validate-objectid.middleware.js';
-import { DEFAULT_DISCUSSED_OFFER_COUNT, DEFAULT_NEW_OFFER_COUNT } from './offer.constant.js';
+import { OfferDefaults } from './offer.constant.js';
 import { ValidateDtoMiddleware } from '../../common/middlewares/validate-dto.middleware.js';
 import { DocumentExistsMiddleware } from '../../common/middlewares/document-exists.middleware.js';
 
@@ -134,12 +134,12 @@ export default class OfferController extends Controller {
   }
 
   public async getNew(_req: Request, res: Response) {
-    const newOffers = await this.offerService.findNew(DEFAULT_NEW_OFFER_COUNT);
+    const newOffers = await this.offerService.findNew(OfferDefaults.newCount);
     this.ok(res, fillDTO(OfferResponse, newOffers));
   }
 
   public async getDiscussed(_req: Request, res: Response) {
-    const discussedOffers = await this.offerService.findDiscussed(DEFAULT_DISCUSSED_OFFER_COUNT);
+    const discussedOffers = await this.offerService.findDiscussed(OfferDefaults.discussedCount);
     this.ok(res, fillDTO(OfferResponse, discussedOffers));
   }
 }
