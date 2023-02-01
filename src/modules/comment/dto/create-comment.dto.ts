@@ -14,7 +14,6 @@ export default class CreateCommentDto {
   @IsInt({ message: '$property must be an integer' })
   public overallRating!: number;
 
-
   @IsNumber({ maxDecimalPlaces: 1 }, { message: 'Only 1 digit precision to the right of decimal point is allowed' })
   @Min(1, { message: '$property must be a numerical value no less than $constraint1' })
   @Max(5, { message: '$property must be a numerical value no more than $constraint1' })

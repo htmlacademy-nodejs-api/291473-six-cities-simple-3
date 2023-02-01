@@ -68,6 +68,7 @@ export default class CreateOfferDto {
   @IsInt({ message: '$property must be an integer' })
   public commentsCount!: number;
 
+  // Нужен валидатор для проверки коодинат (по ТЗ город и коордитаны четко соответствуют друг другу)!!>>>>>>>>>>>>>>> Добавить валидатор
   public coordinates!: Coordinates;
 
   @IsMongoId({ message: '$property field must contain a valid id' })
