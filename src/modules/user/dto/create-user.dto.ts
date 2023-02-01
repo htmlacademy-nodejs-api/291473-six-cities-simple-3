@@ -1,4 +1,5 @@
-import { IsEmail, IsEnum, IsString, Length, MaxLength } from 'class-validator';
+import { IsEmail, IsEnum, IsString, Length, MaxLength, Validate } from 'class-validator';
+import { ValidateImgFormat } from '../../../common/middlewares/validate-img.middleware.js';
 import { userType } from '../../../types/user-type.enum.js';
 
 export default class CreateUserDto {
@@ -10,7 +11,8 @@ export default class CreateUserDto {
   public name!: string;
 
   @MaxLength(256, { message: 'Too short for field «image»' })
-  // Нужно проверка формата файла (по ТЗ файл может быть в формате jpg или png); >>>>>>>>>>>>>>> Добавить валидатор
+  @IsString({ message: '$property must be a valid string' })
+  @Validate(ValidateImgFormat)
   public avatarPath!: string;
 
   @IsEnum(userType, { message: '$property should be a value from userTypeEnum' })

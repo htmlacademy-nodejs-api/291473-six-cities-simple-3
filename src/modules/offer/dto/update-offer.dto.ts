@@ -3,7 +3,7 @@ import { housingType } from '../../../types/housing-type.enum.js';
 import { ArrayMaxSize, ArrayMinSize, IsArray, IsBoolean, IsDateString, IsEnum, IsInt, IsNumber, IsString, Max, MaxLength, Min, MinLength, Validate } from 'class-validator';
 import { City } from '../../../types/city.enum.js';
 import { Amenities } from '../../../types/amenities.enum.js';
-import { ValideteCityCoords } from '../../../common/middlewares/validate-coords.middleware.js';
+import { ValidateCityCoords } from '../../../common/middlewares/validate-coords.middleware.js';
 
 export default class UpdateOfferDto {
   @MinLength(10, { message: 'Minimum title length must be 10' })
@@ -68,6 +68,6 @@ export default class UpdateOfferDto {
   @IsInt({ message: '$property must be an integer' })
   public commentsCount?: number;
 
-  @Validate(ValideteCityCoords)
+  @Validate(ValidateCityCoords)
   public coordinates?: Coordinates;
 }

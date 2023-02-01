@@ -3,8 +3,7 @@ import { housingType } from '../../../types/housing-type.enum.js';
 import { City } from '../../../types/city.enum.js';
 import { ArrayMaxSize, ArrayMinSize, IsArray, IsBoolean, IsDateString, IsEnum, IsInt, IsMongoId, IsNumber, IsString, Max, MaxLength, Min, MinLength, Validate } from 'class-validator';
 import { Amenities } from '../../../types/amenities.enum.js';
-import { ValideteCityCoords } from '../../../common/middlewares/validate-coords.middleware.js';
-// import { CITIES_COORDINATES } from '../../../types/city.enum.js';
+import { ValidateCityCoords } from '../../../common/middlewares/validate-coords.middleware.js';
 
 export default class CreateOfferDto {
   @MinLength(10, { message: 'Minimum title length must be 10' })
@@ -69,7 +68,7 @@ export default class CreateOfferDto {
   @IsInt({ message: '$property must be an integer' })
   public commentsCount!: number;
 
-  @Validate(ValideteCityCoords)
+  @Validate(ValidateCityCoords)
   public coordinates!: Coordinates;
 
   @IsMongoId({ message: '$property field must contain a valid id' })

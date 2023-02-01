@@ -1,7 +1,9 @@
-import { IsString, Length, MaxLength } from 'class-validator';
+import { IsString, Length, MaxLength, Validate } from 'class-validator';
+import { ValidateImgFormat } from '../../../common/middlewares/validate-img.middleware';
 
 export default class UpdateUserDto {
   @MaxLength(256, { message: 'Too short for field «image»' })
+  @Validate(ValidateImgFormat)
   public avatarPath?: string;
 
   @IsString({ message: 'firstname is required' })
