@@ -1,4 +1,2 @@
-export enum UserDefaults {
-  usersCount = 60,
-  jwtAlgoritm = 'HS256',
-}
+export const USERS_LIMIT_COUNT = 60;
+

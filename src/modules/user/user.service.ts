@@ -7,7 +7,7 @@ import { LoggerInterface } from '../../common/logger/logger.interface.js';
 import { Component } from '../../types/component.types.js';
 import UpdateUserDto from './dto/update-user.dto.js';
 import LoginUserDto from './dto/login-user.dto.js';
-import { UserDefaults } from './user.constant.js';
+import { USERS_LIMIT_COUNT } from './user.constant.js';
 
 @injectable()
 export default class UserService implements UserServiceInterface {
@@ -29,7 +29,7 @@ export default class UserService implements UserServiceInterface {
   public async find(): Promise<DocumentType<UserEntity>[]> {
     return this.userModel
       .find()
-      .limit(UserDefaults.usersCount)
+      .limit(USERS_LIMIT_COUNT)
       .exec();
   }
 

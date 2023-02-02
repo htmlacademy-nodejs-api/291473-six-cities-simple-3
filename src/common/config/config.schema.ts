@@ -13,6 +13,7 @@ export type ConfigSchema = {
   DB_NAME: string;
   UPLOAD_DIRECTORY: string;
   JWT_SECRET: string;
+  JWT_ALGORITHM: string;
 }
 
 export const configSchema = convict<ConfigSchema>({
@@ -68,6 +69,12 @@ export const configSchema = convict<ConfigSchema>({
     doc: 'Secret for sign JWT',
     format: String,
     env: 'JWT_SECRET',
+    default: null
+  },
+  JWT_ALGORITHM: {
+    doc: 'Algorithm for sign JWT',
+    format: String,
+    env: 'JWT_ALGORITHM',
     default: null
   }
 });

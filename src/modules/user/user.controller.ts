@@ -16,7 +16,6 @@ import { ValidateDtoMiddleware } from '../../common/middlewares/validate-dto.mid
 import { ValidateObjectIdMiddleware } from '../../common/middlewares/validate-objectid.middleware.js';
 import { UploadFileMiddleware } from '../../common/middlewares/upload-file.middleware.js';
 import LoggedUserResponse from './response/logged-user.response.js';
-import { UserDefaults } from './user.constant.js';
 
 @injectable()
 export default class UserController extends Controller {
@@ -88,7 +87,7 @@ export default class UserController extends Controller {
     }
 
     const token = await createJWT(
-      UserDefaults.jwtAlgoritm,
+      this.configService.get('JWT_ALGORITHM'),
       this.configService.get('JWT_SECRET'),
       { email: user.email, id: user.id }
     );
