@@ -26,6 +26,12 @@ Content-Type: application/json
 
 ###
 
+## Проверка токена пользователя
+GET http://localhost:31337/users/login HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6InRvcmFuc0BvdmVybG9vay5uZXQiLCJpZCI6IjYzZGI3ZGE5MjQzN2JlMzRmNjU4NGM0NSIsImlhdCI6MTY3NTM0MDk4NSwiZXhwIjoxNjc1NTEzNzg1fQ.chuimKuFnKfD65Pvge6aoRxZmOVajD1HePRzPyMkw0c
+
+###
+
 ## Отправка аватарки пользователю
 
 POST http://localhost:31337/users/63d19988b2939be51323572d/avatar HTTP/1.1
