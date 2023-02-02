@@ -53,10 +53,10 @@
       "detail-image10.jpg"
     ],
     "housingTypes": [
-      "Apartment",
-      "House",
-      "Room",
-      "Hotel"
+      "apartment",
+      "house",
+      "room",
+      "hotel"
     ],
     "amenities": [
       "Breakfast",
