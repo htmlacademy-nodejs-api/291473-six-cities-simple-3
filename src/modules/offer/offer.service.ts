@@ -8,6 +8,7 @@ import { LoggerInterface } from '../../common/logger/logger.interface.js';
 import UpdateOfferDto from './dto/update-offer.dto.js';
 import { SortType } from '../../types/sort-type.enum.js';
 import { getNewRating } from '../../utils/common.js';
+import { OfferDefaults } from './offer.constant.js';
 
 @injectable()
 export default class OfferService implements OfferServiceInterface {
@@ -33,7 +34,7 @@ export default class OfferService implements OfferServiceInterface {
   public async find(): Promise<DocumentType<OfferEntity>[]> {
     return this.offerModel
       .find()
-      .limit(60)
+      .limit(OfferDefaults.offersCount)
       .populate(['userId'])
       .exec();
   }
