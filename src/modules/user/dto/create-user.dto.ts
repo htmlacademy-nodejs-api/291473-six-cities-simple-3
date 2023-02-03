@@ -16,7 +16,7 @@ export default class CreateUserDto {
   public avatarPath!: string;
 
   @IsEnum(userType, { message: '$property should be a value from userTypeEnum' })
-  public type!: userType;
+  public type!: string;
 
   @IsString({ message: 'password is required' })
   @Length(6, 12, { message: 'Min length for password is 6, max is 12' })

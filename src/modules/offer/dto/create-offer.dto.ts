@@ -1,7 +1,7 @@
 import { Coordinates } from '../../../types/coordinates.type.js';
 import { housingType } from '../../../types/housing-type.enum.js';
 import { City } from '../../../types/city.enum.js';
-import { ArrayMaxSize, ArrayMinSize, IsArray, IsBoolean, IsDateString, IsEnum, IsInt, IsMongoId, IsNumber, IsString, Max, MaxLength, Min, MinLength, Validate } from 'class-validator';
+import { ArrayMaxSize, ArrayMinSize, IsArray, IsBoolean, IsDateString, IsEnum, IsInt, IsNumber, IsString, Max, MaxLength, Min, MinLength, Validate } from 'class-validator';
 import { Amenities } from '../../../types/amenities.enum.js';
 import { ValidateCityCoords } from '../../../common/middlewares/validate-coords.middleware.js';
 
@@ -71,6 +71,5 @@ export default class CreateOfferDto {
   @Validate(ValidateCityCoords)
   public coordinates!: Coordinates;
 
-  @IsMongoId({ message: '$property field must contain a valid id' })
   public userId!: string;
 }

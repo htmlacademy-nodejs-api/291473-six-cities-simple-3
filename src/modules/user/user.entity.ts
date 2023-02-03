@@ -21,19 +21,34 @@ export class UserEntity extends defaultClasses.TimeStamps implements User {
     this.type = data.type;
   }
 
-  @prop({ unique: true, required: true })
+  @prop({
+    unique: true,
+    required: true,
+  })
   public email!: string;
 
-  @prop({ required: true, default: '' })
+  @prop({
+    required: true,
+    default: '',
+  })
   public name!: string;
 
-  @prop({ required: true, default: '' })
+  @prop({
+    required: true,
+    default: '',
+  })
   public avatarPath!: string;
 
-  @prop({ required: true, default: '' })
+  @prop({
+    required: true,
+    default: 'Standard',
+  })
   public type!: string;
 
-  @prop({ required: true, default: '' })
+  @prop({
+    required: true,
+    default: '',
+  })
   private password!: string;
 
   public setPassword(password: string, salt: string) {
@@ -42,6 +57,11 @@ export class UserEntity extends defaultClasses.TimeStamps implements User {
 
   public getPassword() {
     return this.password;
+  }
+
+  public verifyPassword(password: string, salt: string) {
+    const hashPassword = createSHA256(password, salt);
+    return hashPassword === this.password;
   }
 }
 
