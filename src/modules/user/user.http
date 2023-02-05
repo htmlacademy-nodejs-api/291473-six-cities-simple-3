@@ -7,7 +7,6 @@ Content-Type: application/json
 {
   "email": "torans@overlook.net",
   "name": "Jack Torrance",
-  "avatarPath": "torrance.jpg",
   "type" : "Regular",
   "password": "shining"
 }
@@ -28,7 +27,7 @@ Content-Type: application/json
 
 ## Проверка токена пользователя
 GET http://localhost:31337/users/login HTTP/1.1
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6InRvcmFuc0BvdmVybG9vay5uZXQiLCJpZCI6IjYzZGI3ZGE5MjQzN2JlMzRmNjU4NGM0NSIsImlhdCI6MTY3NTM0MDk4NSwiZXhwIjoxNjc1NTEzNzg1fQ.chuimKuFnKfD65Pvge6aoRxZmOVajD1HePRzPyMkw0c
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6InRvcmFuc0BvdmVybG9vay5uZXQiLCJpZCI6IjYzZGZhYzUzODk1MWJjNWFiNWRhYWRjYiIsImlhdCI6MTY3NTYwMzAyOSwiZXhwIjoxNjc1Nzc1ODI5fQ.yKykZoJb2jS0P5XR5pp6WCWlamrzbAIiFPhP9w6TrFU
 
 ###
 
