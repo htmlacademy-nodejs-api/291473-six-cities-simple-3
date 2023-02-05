@@ -4,7 +4,7 @@
 
 ## Предложение по идентификатору
 
-GET http://localhost:31337/offers/63d1119988b2939be5132357391 HTTP/1.1
+GET http://localhost:31337/offers/63e00dca6ac7a22e40ad4d79 HTTP/1.1
 
 ###
 
@@ -18,13 +18,14 @@ GET http://localhost:31337/offers HTTP/1.1
 
 POST http://localhost:31337/offers HTTP/1.1
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6InRvcmFuc0BvdmVybG9vay5uZXQiLCJpZCI6IjYzZGZhYzUzODk1MWJjNWFiNWRhYWRjYiIsImlhdCI6MTY3NTYwMzAyOSwiZXhwIjoxNjc1Nzc1ODI5fQ.yKykZoJb2jS0P5XR5pp6WCWlamrzbAIiFPhP9w6TrFU
 
 {
   "title": "Тест Тест Тест",
   "description": "Тест Тест Тест Тест Тест Тест Тест Тест Тест",
   "postDate": "2023-01-23T19:06:57.484Z",
   "city": "Cologne",
-  "previewImagePath": "preview-image4.jpg",
+  "previewImagePath": "preview-image.jpg",
   "detailImagePath": [
     "detail-image6.jpg", 
     "detail-image7.jpg", 
@@ -58,15 +59,16 @@ GET http://localhost:31337/offers/63d19988b2939be513235747/comments HTTP/1.1
 
 ###
 
-## Загрузка изображения для картинки
-POST http://localhost:31337/offers HTTP/1.1
+## Загрузка изображения для предложения
+POST http://localhost:31337/offers/63e00dca6ac7a22e40ad4d79/image HTTP/1.1
 Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6InRvcmFuc0BvdmVybG9vay5uZXQiLCJpZCI6IjYzZGZhYzUzODk1MWJjNWFiNWRhYWRjYiIsImlhdCI6MTY3NTYwMzAyOSwiZXhwIjoxNjc1Nzc1ODI5fQ.yKykZoJb2jS0P5XR5pp6WCWlamrzbAIiFPhP9w6TrFU
 
 ------WebKitFormBoundary7MA4YWxkTrZu0gW
-Content-Disposition: form-data; name="avatar"; filename="items.jpg"
+Content-Disposition: form-data; name="image"; filename="preview-image.jpg"
 Content-Type: image/png
 
-< ./markup/img/item03@2x.jpg
+< /tmp/screen.png
 ------WebKitFormBoundary7MA4YWxkTrZu0gW--
 
 ###
