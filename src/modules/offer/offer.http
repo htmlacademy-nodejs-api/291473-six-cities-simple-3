@@ -18,7 +18,7 @@ GET http://localhost:31337/offers HTTP/1.1
 
 POST http://localhost:31337/offers HTTP/1.1
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6InRvcmFuc0BvdmVybG9vay5uZXQiLCJpZCI6IjYzZGZhYzUzODk1MWJjNWFiNWRhYWRjYiIsImlhdCI6MTY3NTYwMzAyOSwiZXhwIjoxNjc1Nzc1ODI5fQ.yKykZoJb2jS0P5XR5pp6WCWlamrzbAIiFPhP9w6TrFU
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6InRvcmFuc0BvdmVybG9vay5uZXQiLCJpZCI6IjYzZGZhYzUzODk1MWJjNWFiNWRhYWRjYiIsImlhdCI6MTY3NTc5OTA3OSwiZXhwIjoxNjc1OTcxODc5fQ.1UbrgS_mO8hA2p3h_GcMbiWd51Mo9fJvSvmQL_bwqf4
 
 {
   "title": "Тест Тест Тест",
@@ -27,12 +27,12 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6InRvcmFuc0BvdmVybG9vay5uZ
   "city": "Cologne",
   "previewImagePath": "preview-image.jpg",
   "detailImagePath": [
-    "detail-image6.jpg", 
-    "detail-image7.jpg", 
-    "detail-image8.jpg", 
-    "detail-image9.jpg", 
-    "detail-image10.jpg",
-     "detail-image9.jpg"
+    "detail-image.jpg", 
+    "detail-image1.jpg", 
+    "detail-image2.jpg", 
+    "detail-image3.jpg", 
+    "detail-image4.jpg",
+    "detail-image5.jpg"
     ],
   "premium": true,
   "ratingCount": 1,
@@ -59,13 +59,65 @@ GET http://localhost:31337/offers/63d19988b2939be513235747/comments HTTP/1.1
 
 ###
 
-## Загрузка изображения для предложения
-POST http://localhost:31337/offers/63e00dca6ac7a22e40ad4d79/image HTTP/1.1
+## Загрузка превью-изображения для предложения
+POST http://localhost:31337/offers/63d19988b2939be513235747/preview HTTP/1.1
 Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW
 Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6InRvcmFuc0BvdmVybG9vay5uZXQiLCJpZCI6IjYzZGZhYzUzODk1MWJjNWFiNWRhYWRjYiIsImlhdCI6MTY3NTc5ODEzNiwiZXhwIjoxNjc1OTcwOTM2fQ.pAZ9PwRx_4uWy08Cqn_GIW3A9sdVJttNWm1anzQs7IE
 
 ------WebKitFormBoundary7MA4YWxkTrZu0gW
 Content-Disposition: form-data; name="image"; filename="preview-image.jpg"
+Content-Type: image/png
+
+< /tmp/screen.png
+------WebKitFormBoundary7MA4YWxkTrZu0gW--
+
+###
+
+## Загрузка детальных изображений для предложения
+POST http://localhost:31337/offers/63d19988b2939be513235747/detail HTTP/1.1
+Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6InRvcmFuc0BvdmVybG9vay5uZXQiLCJpZCI6IjYzZGZhYzUzODk1MWJjNWFiNWRhYWRjYiIsImlhdCI6MTY3NTc5ODEzNiwiZXhwIjoxNjc1OTcwOTM2fQ.pAZ9PwRx_4uWy08Cqn_GIW3A9sdVJttNWm1anzQs7IE
+
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="image"; filename="detail-image.jpg"
+Content-Type: image/png
+
+< /tmp/screen.png
+------WebKitFormBoundary7MA4YWxkTrZu0gW--
+
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="image"; filename="detail-image1.jpg"
+Content-Type: image/png
+
+< /tmp/screen.png
+------WebKitFormBoundary7MA4YWxkTrZu0gW--
+
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="image"; filename="detail-image2.jpg"
+Content-Type: image/png
+
+< /tmp/screen.png
+------WebKitFormBoundary7MA4YWxkTrZu0gW--
+
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="image"; filename="detail-image3.jpg"
+Content-Type: image/png
+
+< /tmp/screen.png
+------WebKitFormBoundary7MA4YWxkTrZu0gW--
+
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="image"; filename="detail-image4.jpg"
+Content-Type: image/png
+
+< /tmp/screen.png
+------WebKitFormBoundary7MA4YWxkTrZu0gW--
+
+< /tmp/screen.png
+------WebKitFormBoundary7MA4YWxkTrZu0gW--
+
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="image"; filename="detail-image5.jpg"
 Content-Type: image/png
 
 < /tmp/screen.png

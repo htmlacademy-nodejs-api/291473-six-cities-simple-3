@@ -88,9 +88,19 @@ export default class OfferController extends Controller {
       ]
     });
     this.addRoute({
-      path: '/:offerId/image',
+      path: '/:offerId/preview',
       method: HttpMethod.Post,
-      handler: this.uploadImage,
+      handler: this.uploadPreviewImage,
+      middlewares: [
+        new PrivateRouteMiddleware(),
+        new ValidateObjectIdMiddleware('offerId'),
+        new UploadFileMiddleware(this.configService.get('UPLOAD_DIRECTORY'), 'image'),
+      ]
+    });
+    this.addRoute({
+      path: '/:offerId/detail',
+      method: HttpMethod.Post,
+      handler: this.uploadDetailImages,
       middlewares: [
         new PrivateRouteMiddleware(),
         new ValidateObjectIdMiddleware('offerId'),
@@ -121,6 +131,7 @@ export default class OfferController extends Controller {
     const { body, user } = req;
     const result = await this.offerService.create({ ...body, userId: user.id });
     const offer = await this.offerService.findById(result.id);
+
     this.created(res, fillDTO(OfferResponse, offer));
   }
 
@@ -162,11 +173,21 @@ export default class OfferController extends Controller {
     this.ok(res, fillDTO(OfferResponse, discussedOffers));
   }
 
-  public async uploadImage(req: Request<core.ParamsDictionary | ParamsGetOffer>, res: Response) {
-    // const { offerId } = req.params;
-    const updateDto = { image: req.file?.filename };
-    // await this.offerService.updateById(offerId, updateDto);
+  public async uploadPreviewImage(req: Request<core.ParamsDictionary | ParamsGetOffer>, res: Response) {
+    const { offerId } = req.params;
+    const updateDto = { previewImagePath: req.file?.filename };
+    await this.offerService.updateById(offerId, updateDto);
     this.created(res, fillDTO(UploadImageResponse, { ...updateDto }));
+  }
+
+  public async uploadDetailImages(req: Request<core.ParamsDictionary | ParamsGetOffer>) { //, res: Response
+    // const { offerId } = req.params;
+    // const updateDto = { previewImagePath: req.file?.filename };
+    // await this.offerService.updateById(offerId, updateDto);
+    // this.created(res, fillDTO(UploadImageResponse, { ...updateDto }));
+
+    console.log(req.params);
+
   }
 }
 

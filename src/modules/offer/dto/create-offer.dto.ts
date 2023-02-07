@@ -20,8 +20,8 @@ export default class CreateOfferDto {
   @IsEnum(City, { message: '$property should be a value from CityEnum' })
   public city!: string;
 
-  // @MaxLength(256, { message: 'Too short for field «image»' })
-  // public previewImagePath!: string;
+  @MaxLength(256, { message: 'Too short for field «image»' })
+  public previewImagePath!: string;
 
   @IsArray({ message: 'Field detailImagePath must be an array' })
   @ArrayMinSize(6, { message: '$property must contain exactly $constraint1 items' })

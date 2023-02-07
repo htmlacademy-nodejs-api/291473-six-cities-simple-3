@@ -44,12 +44,9 @@ export class OfferEntity extends defaultClasses.TimeStamps {
   })
   public city!: string;
 
-  // @prop({
-  //   required: true,
-  // })
-  // public previewImagePath!: string;
-
-  @prop({ default: '' })
+  @prop({
+    required: true,
+  })
   public previewImagePath!: string;
 
   @prop({

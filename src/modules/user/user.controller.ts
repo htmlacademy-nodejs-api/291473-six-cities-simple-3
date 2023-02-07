@@ -105,11 +105,10 @@ export default class UserController extends Controller {
   }
 
   public async uploadAvatar(req: Request, res: Response) {
-    // const { userId } = req.params;
-    console.log(req.file?.filename);
-    const uploaFile = { filepath: req.file?.filename };
-    // await this.userService.updateById(userId, uploaFile);
-    this.created(res, fillDTO(UploadUserAvatarResponse, uploaFile));
+    const { userId } = req.params;
+    const uploadFile = { avatarPath: req.file?.filename };
+    await this.userService.updateById(userId, uploadFile);
+    this.created(res, fillDTO(UploadUserAvatarResponse, uploadFile));
   }
 
   public async checkAuthenticate(req: Request, res: Response) {
