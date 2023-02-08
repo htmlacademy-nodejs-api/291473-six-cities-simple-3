@@ -107,7 +107,6 @@ export default class OfferController extends Controller {
         new PrivateRouteMiddleware(),
         new ValidateObjectIdMiddleware('offerId'),
         new UploadFileMiddleware(this.configService.get('UPLOAD_DIRECTORY'), 'image'),
-        // new UploadFileMiddleware(this.configService.get('UPLOAD_DIRECTORY'), 'image'),
       ]
     });
   }
@@ -178,9 +177,11 @@ export default class OfferController extends Controller {
 
   public async uploadPreviewImage(req: Request<core.ParamsDictionary | ParamsGetOffer>, res: Response) {
     const { offerId } = req.params;
-    const updateDto = { previewImagePath: req.file?.filename };
+    // const updateDto = { previewImagePath: req.file?.filename };
+    const updateDto = { previewImagePath: req.params.files };
     await this.offerService.updateById(offerId, updateDto);
     this.created(res, fillDTO(UploadImageResponse, { ...updateDto }));
+    console.log(req.params.files);
   }
 
   public async uploadDetailImages(req: Request<core.ParamsDictionary | ParamsGetOffer>, res: Response) { //, res: Response
@@ -188,6 +189,7 @@ export default class OfferController extends Controller {
     const updateDto = { detailImagePath: req.params.files.split(' ') };
     await this.offerService.updateById(offerId, updateDto);
     this.created(res, fillDTO(UploadDetailResponse, { ...updateDto }));
+    console.log(req.params.files);
 
 
     // console.log(req.params.files.split(' '));
