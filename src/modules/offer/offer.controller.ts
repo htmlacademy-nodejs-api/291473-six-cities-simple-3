@@ -186,7 +186,7 @@ export default class OfferController extends Controller {
     // await this.offerService.updateById(offerId, updateDto);
     // this.created(res, fillDTO(UploadImageResponse, { ...updateDto }));
 
-    console.log(req.params);
+    console.log(req.body);
 
   }
 }
