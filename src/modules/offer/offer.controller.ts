@@ -177,7 +177,6 @@ export default class OfferController extends Controller {
 
   public async uploadPreviewImage(req: Request<core.ParamsDictionary | ParamsGetOffer>, res: Response) {
     const { offerId } = req.params;
-    // const updateDto = { previewImagePath: req.file?.filename };
     const updateDto = { previewImagePath: req.params.files };
     await this.offerService.updateById(offerId, updateDto);
     this.created(res, fillDTO(UploadImageResponse, { ...updateDto }));
@@ -189,13 +188,6 @@ export default class OfferController extends Controller {
     const updateDto = { detailImagePath: req.params.files.split(' ') };
     await this.offerService.updateById(offerId, updateDto);
     this.created(res, fillDTO(UploadDetailResponse, { ...updateDto }));
-    console.log(req.params.files);
-
-
-    // console.log(req.params.files.split(' '));
-    // console.log(req.files);
-    // console.log(req.params);
-
   }
 }
 

@@ -4,7 +4,7 @@
 
 ## Предложение по идентификатору
 
-GET http://localhost:31337/offers/63e00dca6ac7a22e40ad4d79 HTTP/1.1
+GET http://localhost:31337/offers/63e35aa326d2ae3475584338 HTTP/1.1
 
 ###
 
@@ -118,36 +118,18 @@ Content-Type: image/png
 
 ###
 
-## Загрузка детальных изображений для предложения TEST
-POST http://localhost:31337/offers/63e35aa326d2ae3475584338/detail HTTP/1.1
-Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6InRvcmFuc0BvdmVybG9vay5uZXQiLCJpZCI6IjYzZTBiNWM5ZGI0ODFmNjU5MGY1YTlhNCIsImlhdCI6MTY3NTg0NDE2NiwiZXhwIjoxNjc2MDE2OTY2fQ.RZviN8WBdXkKm527Ww9feYe1cDIJUJk6p4hqFWOsD2k
-
-------WebKitFormBoundary7MA4YWxkTrZu0gW
-Content-Disposition: form-data; name="image"; filename="detail-image1.jpg"
-Content-Type: image/png
-
-< /tmp/screen.png
-
-------WebKitFormBoundary7MA4YWxkTrZu0gW
-Content-Disposition: form-data; name="image"; filename="detail-image5.jpg"
-Content-Type: image/png
-
-< /tmp/screen.png
-
-------WebKitFormBoundary7MA4YWxkTrZu0gW--
-###
-
 ## Удаление предложения
 
-DELETE http://localhost:31337/offers/63d19988b2939be513235730 HTTP/1.1
+DELETE http://localhost:31337/offers/63e35aa326d2ae3475584338 HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6InRvcmFuc0BvdmVybG9vay5uZXQiLCJpZCI6IjYzZTBiNWM5ZGI0ODFmNjU5MGY1YTlhNCIsImlhdCI6MTY3NTg0NDE2NiwiZXhwIjoxNjc2MDE2OTY2fQ.RZviN8WBdXkKm527Ww9feYe1cDIJUJk6p4hqFWOsD2k
 
 ###
 
 ## Обновление предложения
 
-PATCH http://localhost:31337/offers/63d19988b2939be513235739 HTTP/1.1
+PATCH http://localhost:31337/offers/63e35aa326d2ae3475584338 HTTP/1.1
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6InRvcmFuc0BvdmVybG9vay5uZXQiLCJpZCI6IjYzZTBiNWM5ZGI0ODFmNjU5MGY1YTlhNCIsImlhdCI6MTY3NTg0NDE2NiwiZXhwIjoxNjc2MDE2OTY2fQ.RZviN8WBdXkKm527Ww9feYe1cDIJUJk6p4hqFWOsD2k
 
 {
   "description": "Новое описание новое описание новое описание новое описание",

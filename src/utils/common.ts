@@ -139,6 +139,9 @@ export const transformObject = (properties: string[], staticPath: string, upload
   properties
     .forEach((property) => transformProperty(property, data, (target: UnknownObject) => {
       const rootPath = DEFAULT_STATIC_IMAGES.includes(target[property] as string) ? staticPath : uploadPath;
+      if (typeof target[property] === 'object') {
+        target[property] = (String(target[property])).split(',').map((image) => `${rootPath}/${image}`);
+      }
       target[property] = `${rootPath}/${target[property]}`;
     }));
 };

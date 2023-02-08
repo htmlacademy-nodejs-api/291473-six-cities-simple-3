@@ -4,5 +4,7 @@ export const DEFAULT_STATIC_IMAGES = [
 
 export const STATIC_RESOURCE_FIELDS = [
   'avatarPath',
-  'image'
+  'image',
+  'previewImagePath',
+  'detailImagePath',
 ];

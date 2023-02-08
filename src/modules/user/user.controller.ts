@@ -17,6 +17,7 @@ import { ValidateObjectIdMiddleware } from '../../common/middlewares/validate-ob
 import { UploadFileMiddleware } from '../../common/middlewares/upload-file.middleware.js';
 import LoggedUserResponse from './response/logged-user.response.js';
 import UploadUserAvatarResponse from './response/upload-user-avatar.response.js';
+import { PrivateRouteMiddleware } from '../../common/middlewares/private-route.middleware.js';
 
 @injectable()
 export default class UserController extends Controller {
@@ -45,6 +46,7 @@ export default class UserController extends Controller {
       method: HttpMethod.Post,
       handler: this.uploadAvatar,
       middlewares: [
+        new PrivateRouteMiddleware(),
         new ValidateObjectIdMiddleware('userId'),
         new UploadFileMiddleware(this.configService.get('UPLOAD_DIRECTORY'), 'avatar'),
       ]
@@ -106,8 +108,6 @@ export default class UserController extends Controller {
 
   public async uploadAvatar(req: Request, res: Response) {
     const { userId } = req.params;
-    // const uploadFile = { avatarPath: req.file?.filename };
-
     const uploadFile = { avatarPath: req.params.files };
 
     await this.userService.updateById(userId, uploadFile);
