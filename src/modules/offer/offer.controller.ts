@@ -20,6 +20,7 @@ import { PrivateRouteMiddleware } from '../../common/middlewares/private-route.m
 import { ConfigInterface } from '../../common/config/config.interface.js';
 import { UploadFileMiddleware } from '../../common/middlewares/upload-file.middleware.js';
 import UploadImageResponse from './response/upload-image.response.js';
+// import UploadDetailResponse from './response/upload-detail.response.js';
 
 type ParamsGetOffer = {
   offerId: string;
@@ -105,6 +106,7 @@ export default class OfferController extends Controller {
         new PrivateRouteMiddleware(),
         new ValidateObjectIdMiddleware('offerId'),
         new UploadFileMiddleware(this.configService.get('UPLOAD_DIRECTORY'), 'image'),
+        // new UploadFileMiddleware(this.configService.get('UPLOAD_DIRECTORY'), 'image'),
       ]
     });
   }
@@ -182,11 +184,12 @@ export default class OfferController extends Controller {
 
   public async uploadDetailImages(req: Request<core.ParamsDictionary | ParamsGetOffer>) { //, res: Response
     // const { offerId } = req.params;
-    // const updateDto = { previewImagePath: req.file?.filename };
+    const updateDto = { detailImagePath: req.files };
     // await this.offerService.updateById(offerId, updateDto);
-    // this.created(res, fillDTO(UploadImageResponse, { ...updateDto }));
-
-    console.log(req.body);
+    // this.created(res, fillDTO(UploadDetailResponse, { ...updateDto }));
+    console.log(updateDto);
+    // console.log(req.files);
+    // console.log(req.params);
 
   }
 }
