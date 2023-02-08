@@ -20,10 +20,11 @@ import { PrivateRouteMiddleware } from '../../common/middlewares/private-route.m
 import { ConfigInterface } from '../../common/config/config.interface.js';
 import { UploadFileMiddleware } from '../../common/middlewares/upload-file.middleware.js';
 import UploadImageResponse from './response/upload-image.response.js';
-// import UploadDetailResponse from './response/upload-detail.response.js';
+import UploadDetailResponse from './response/upload-detail.response.js';
 
 type ParamsGetOffer = {
   offerId: string;
+  files: string;
 }
 
 @injectable()
@@ -182,12 +183,14 @@ export default class OfferController extends Controller {
     this.created(res, fillDTO(UploadImageResponse, { ...updateDto }));
   }
 
-  public async uploadDetailImages(req: Request<core.ParamsDictionary | ParamsGetOffer>) { //, res: Response
-    // const { offerId } = req.params;
-    const updateDto = { detailImagePath: req.files };
-    // await this.offerService.updateById(offerId, updateDto);
-    // this.created(res, fillDTO(UploadDetailResponse, { ...updateDto }));
-    console.log(updateDto);
+  public async uploadDetailImages(req: Request<core.ParamsDictionary | ParamsGetOffer>, res: Response) { //, res: Response
+    const { offerId } = req.params;
+    const updateDto = { detailImagePath: req.params.files.split(' ') };
+    await this.offerService.updateById(offerId, updateDto);
+    this.created(res, fillDTO(UploadDetailResponse, { ...updateDto }));
+
+
+    // console.log(req.params.files.split(' '));
     // console.log(req.files);
     // console.log(req.params);
 

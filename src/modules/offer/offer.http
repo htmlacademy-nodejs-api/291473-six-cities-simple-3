@@ -108,11 +108,11 @@ Content-Type: image/png
 
 < /tmp/screen.png
 
-------WebKitFormBoundary7MA4YWxkTrZu0gW
-Content-Disposition: form-data; name="image"; filename="detail-image5.jpg"
-Content-Type: image/png
+# ------WebKitFormBoundary7MA4YWxkTrZu0gW
+# Content-Disposition: form-data; name="image"; filename="detail-image5.jpg"
+# Content-Type: image/png
 
-< /tmp/screen.png
+# < /tmp/screen.png
 
 ------WebKitFormBoundary7MA4YWxkTrZu0gW--
 
