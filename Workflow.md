@@ -160,12 +160,21 @@ npm run mock:server
 ### Переменные окружения
 
 PORT=31337 - Порт для входящего соединения
+
 SALT=secret - соль для хешированяи пароля
+
 DB_HOST=127.0.0.1 - IP-адрес сервера базы данных (MongoDB)
+
 DB_USER=admin - Имя пользователя для подключения к базе данных (MongoDB)
+
 DB_PASSWORD=test - Пароль для подключения к базе данных (MongoDB)
+
 DB_NAME=course-njs1 - Название базы данных (MongoDB)
+
 DB_PORT=27017 - Порт для подключения к базе данных (MongoDB)
+
 UPLOAD_DIRECTORY=upload - Директория для загрузки файлов
+
 JWT_SECRET=jwtsecret123 - Секретный код для формирования токенов доступа (JSON Web Token)
+
 JWT_ALGORITHM=HS256 - Алогоритм формирования токенов доступа (JSON Web Token)
