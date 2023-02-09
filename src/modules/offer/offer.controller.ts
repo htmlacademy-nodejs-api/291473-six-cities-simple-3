@@ -186,6 +186,8 @@ export default class OfferController extends Controller {
   public async uploadDetailImages(req: Request<core.ParamsDictionary | ParamsGetOffer>, res: Response) {
     const { offerId } = req.params;
     const updateDto = { detailImagePath: req.params.files.split(' ') };
+    console.log('req.params.files from Controller');
+    console.log(req.params.files.split(' '));
     await this.offerService.updateById(offerId, updateDto);
     this.created(res, fillDTO(UploadDetailResponse, { ...updateDto }));
   }
