@@ -74,10 +74,5 @@ export default class Application {
     this.initExceptionFilters();
     this.expressApp.listen(this.config.get('PORT'));
     this.logger.info(`Server started on ${getFullServerPath(this.config.get('HOST'), this.config.get('PORT'))}`);
-
-    // //Тестовый пример //tmp
-    // this.expressApp.get('/', (_req, res) => {
-    //   res.send('Hello');
-    // });
   }
 }

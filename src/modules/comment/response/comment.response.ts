@@ -20,9 +20,6 @@ export default class CommentResponse {
   @Expose()
   public averageRating!: number;
 
-  // @Expose()
-  // public offerId!: string;
-
   @Expose({ name: 'userId' })
   @Type(() => UserResponse)
   public user!: UserResponse;
