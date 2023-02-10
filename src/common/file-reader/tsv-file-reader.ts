@@ -1,16 +1,23 @@
 import EventEmitter from 'events';
 import { createReadStream } from 'fs';
 import { FileReaderInterface } from './file-reader.interface.js';
+import ConfigService from '../config/config.service.js';
+import { LoggerInterface } from '../../common/logger/logger.interface.js';
+import ConsoleLoggerService from '../logger/console-logger.service.js';
 
 export default class TSVFileReader extends EventEmitter implements FileReaderInterface {
+  private logger: LoggerInterface;
+  config: ConfigService;
 
   constructor(public filename: string) {
     super();
+    this.logger = new ConsoleLoggerService();
+    this.config = new ConfigService(this.logger);
   }
 
   public async read(): Promise<void> {
     const stream = createReadStream(this.filename, {
-      highWaterMark: 16384,
+      highWaterMark: this.config.get('KB_16'),
       encoding: 'utf-8',
     });
 

@@ -16,6 +16,8 @@ export type ConfigSchema = {
   JWT_ALGORITHM: string;
   STATIC_DIRECTORY_PATH: string;
   HOST: string;
+  KB_16: number;
+  KB_64: number;
 }
 
 export const configSchema = convict<ConfigSchema>({
@@ -90,5 +92,17 @@ export const configSchema = convict<ConfigSchema>({
     format: String,
     env: 'HOST',
     default: 'localhost'
-  }
+  },
+  KB_16: {
+    doc: 'The amount of data to write to the mock file',
+    format: Number,
+    env: 'KB_16',
+    default: 16384
+  },
+  KB_64: {
+    doc: 'Amount of data to read from the mock file',
+    format: Number,
+    env: 'KB_64',
+    default: 16
+  },
 });
