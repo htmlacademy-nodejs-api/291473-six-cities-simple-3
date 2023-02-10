@@ -141,7 +141,8 @@ export const transformObject = (properties: string[], staticPath: string, upload
       const rootPath = DEFAULT_STATIC_IMAGES.includes(target[property] as string) ? staticPath : uploadPath;
       if (typeof target[property] === 'object') {
         target[property] = (String(target[property])).split(',').map((image) => `${rootPath}/${image}`);
+      } else {
+        target[property] = `${rootPath}/${target[property]}`;
       }
-      target[property] = `${rootPath}/${target[property]}`;
     }));
 };

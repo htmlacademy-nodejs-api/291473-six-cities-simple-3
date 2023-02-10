@@ -32,9 +32,9 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6InRvcmFuc0BvdmVybG9vay5uZ
 
 ## Отправка аватарки пользователю
 
-POST http://localhost:31337/users/63dfac538951bc5ab5daadcb/avatar HTTP/1.1
+POST http://localhost:31337/users/63e0b5c9db481f6590f5a9a4/avatar HTTP/1.1
 Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6InRvcmFuc0BvdmVybG9vay5uZXQiLCJpZCI6IjYzZGZhYzUzODk1MWJjNWFiNWRhYWRjYiIsImlhdCI6MTY3NTc5OTA3OSwiZXhwIjoxNjc1OTcxODc5fQ.1UbrgS_mO8hA2p3h_GcMbiWd51Mo9fJvSvmQL_bwqf4
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6InRvcmFuc0BvdmVybG9vay5uZXQiLCJpZCI6IjYzZTBiNWM5ZGI0ODFmNjU5MGY1YTlhNCIsImlhdCI6MTY3NjAyOTU5NiwiZXhwIjoxNjc2MjAyMzk2fQ.aETZYBqSD_JnVUQECwO3B1Pbjr4CcI5CFu50ItEOYJw
 
 ------WebKitFormBoundary7MA4YWxkTrZu0gW
 Content-Disposition: form-data; name="avatar"; filename="screen.png"
