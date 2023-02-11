@@ -51,11 +51,41 @@ paths:
       summary: Авторизация пользователя
       description: Авторизует пользователя на основе логина и пароля
 
+      requestBody:
+        description: Информация для авторизации пользователя.
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/userLogin"
+        required: true
+
+      responses:
+        "201":
+          description: Пользователь авторизован. Объект пользователя.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/userLoginInfo"
+
+        "401":
+          description: Пользователь не был авторизован.
+
     get:
       tags:
         - users
       summary: Проверка состояния пользователя
       description: Возвращает информацию по авторизованному пользователю
+
+      responses:
+        "201":
+          description: Пользователь найден. Объект пользователя.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/userCheck"
+
+        "401":
+          description: Пользователь не был найден.
 
   /users/{userId}/avatar:
     post:
@@ -66,7 +96,8 @@ paths:
         аватара должно быть в формате `png` или `jpg`.
 
   # ---------------------- OFFERS PATHS ----------------------
-  /offers/create:
+
+  /offers:
     post:
       tags:
         - offers
@@ -89,8 +120,25 @@ paths:
               schema:
                 $ref: "#/components/schemas/Offer"
 
-  /offers/{OfferId}/edit:
-    post:
+        "401":
+          description: Предложение попытался создать неавторизованный пользователь.
+
+    get:
+      tags:
+        - offers
+      summary: Получение списка предложений
+      description: Получает список предложений.
+
+      responses:
+        "201":
+          description: Информация о предложениях.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Offer"
+
+  /offers/{OfferId}:
+    patch:
       tags:
         - offers
       summary: Редактирование предложения
@@ -114,62 +162,42 @@ paths:
         "409":
           description: Предложение попытался отредактировать пользователь, не создавший данное предложение.
 
-  /offers/{OfferId}/delete:
-    post:
+    delete:
       tags:
         - offers
       summary: Удаление предложения
       description: Удаляет предложение.
 
-      requestBody:
-        description: Информация по удаляемому предложению.
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/deleteOffer"
-        required: true
-
       responses:
-        "201":
+        "204":
           description: Предложение было удалено. Объект удаленного предложения.
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/deleteOffer"
-        "409":
-          description: Предложение попытался удалить пользователь, не создавший данное предложение.
 
-  /offers/OffersList{number}:
-    post:
+        "401":
+          description: Предложение попытался удалить неавторизованный пользователь.
+
+        "404":
+          description: Предложение не было найдено.
+
+  /offers/{OfferId}/comments:
+    get:
       tags:
-        - offers
-      summary: Запрашивает список предложений.
-      description: Отдает список предложений по аренде.
-
-      requestBody:
-        description: Иниформация о предложениях по аренде.
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/offersList"
-        required: true
-
+        - comments
+      summary: Получение комментариев по предложению
+      description: Получает комментарии по предложению.
       responses:
         "201":
-          description: Переданы послендие предложения по аренде (аренде по дате публикации).
+          description: Получены комментарии по выбранному предложению.
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/offersList"
-        "409":
-          description: В системе отсутствуют предложения по аренде.
+                $ref: "#/components/schemas/Comment"
 
   # ---------------------- COMMENTS PATHS ----------------------
-  /comments/create:
+  /comments:
     post:
       tags:
         - comments
-      summary: Создание комментарий
+      summary: Создание комментария
       description: Создает новый комментарий.
 
       requestBody:
@@ -182,40 +210,17 @@ paths:
 
       responses:
         "201":
-          description: Комментарий создан. Объект комментарий.
+          description: Комментарий создан. Объект комментария.
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/comment"
 
-        "409":
-          description: В системе отсутствуют комментарии.
+        "401":
+          description: Комментарий попытался создать неавторизованный пользователь.
 
-  /comments/list/{number}:
-    post:
-      tags:
-        - comments
-      summary: Список комментариев.
-      description: Получает список комментариев.
-
-      requestBody:
-        description: Информация о последних коментариях.
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/commentList"
-        required: true
-
-      responses:
-        "201":
-          description: Переданы послендие комментарии (по дате публикации).
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/comment"
-
-        "409":
-          description: Ошибка при создании комментария Превышено количество симвовлов для комментария.
+        "404":
+          description: Предложение для которого создается комментарий не было найдено.
 
 components:
   # ---------------------- USERS COMPONENTS----------------------
@@ -256,6 +261,66 @@ components:
         name:
           type: string
           example: Keks
+
+        avatarPath:
+          type: string
+          example: http://six-cities/static/default-avatar.jpg
+
+        type:
+          type: string
+          example: Regular
+
+    userLogin:
+      type: object
+
+      properties:
+        email:
+          type: string
+          example: keks@htmlacademy.ru
+
+        password:
+          type: string
+          example: 123456
+
+    userLoginInfo:
+      type: object
+
+      properties:
+        token:
+          type: string
+          example: eyJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6InRvcmFuczExQG92ZXJsb29rLm5ldCIsImlkIjoiNjNlNDhlOTNiNzM0MmM0YTIzNTkwOWM2IiwiaWF0IjoxNjc1OTIzMzIyLCJleHAiOjE2NzYwOTYxMjJ9.B_34dYm177btTaNZws9KSubIQ3bGuwpwrZNcsE92bxM
+
+        email:
+          type: string
+          example: keks@htmlacademy.ru
+
+        name:
+          type: string
+          example: Keks
+
+        avatarPath:
+          type: string
+          example: http://six-cities/static/default-avatar.jpg
+
+        type:
+          type: string
+          example: Regular
+
+    userCheck:
+      type: object
+
+      properties:
+        email:
+          type: string
+          example: keks@htmlacademy.ru
+
+        name:
+          type: string
+          example: Keks
+
+        avatarPath:
+          type: string
+          example: http://six-cities/static/default-avatar.jpg
 
         type:
           type: string
