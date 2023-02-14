@@ -4,14 +4,15 @@ import { City } from '../../../types/city.enum.js';
 import { ArrayMaxSize, ArrayMinSize, IsArray, IsBoolean, IsDateString, IsEnum, IsInt, IsNumber, IsString, Max, MaxLength, Min, MinLength, Validate } from 'class-validator';
 import { Amenities } from '../../../types/amenities.enum.js';
 import { ValidateCityCoords } from '../../../common/middlewares/validate-coords.middleware.js';
+import { ValidateConstants } from '../../../utils/validate.constants.js';
 
 export default class CreateOfferDto {
-  @MinLength(10, { message: 'Minimum title length must be 10' })
-  @MaxLength(100, { message: 'Maximum title length must be 100' })
+  @MinLength(ValidateConstants.minLengthTitle, { message: 'Minimum title length must be 10' })
+  @MaxLength(ValidateConstants.maxLengthTitle, { message: 'Maximum title length must be 100' })
   public title!: string;
 
-  @MinLength(20, { message: 'Minimum description length must be 20' })
-  @MaxLength(1024, { message: 'Maximum description length must be 1024' })
+  @MinLength(ValidateConstants.minOfferDescriptionLength, { message: 'Minimum description length must be 20' })
+  @MaxLength(ValidateConstants.maxOfferDescriptionLength, { message: 'Maximum description length must be 1024' })
   public description!: string;
 
   @IsDateString({}, { message: 'postDate must be valid ISO date' })
@@ -20,12 +21,12 @@ export default class CreateOfferDto {
   @IsEnum(City, { message: '$property should be a value from CityEnum' })
   public city!: string;
 
-  @MaxLength(256, { message: 'Too short for field «image»' })
+  @MaxLength(ValidateConstants.maxLengthImage, { message: 'Too short for field «image»' })
   public previewImagePath!: string;
 
   @IsArray({ message: 'Field detailImagePath must be an array' })
-  @ArrayMinSize(6, { message: '$property must contain exactly $constraint1 items' })
-  @ArrayMaxSize(6, { message: '$property must contain exactly $constraint1 items' })
+  @ArrayMinSize(ValidateConstants.minCountDetailImages, { message: '$property must contain exactly $constraint1 items' })
+  @ArrayMaxSize(ValidateConstants.maxCountDetailImages, { message: '$property must contain exactly $constraint1 items' })
   @IsString({ message: '$property must be a string', each: true })
   public detailImagePath!: string[];
 
@@ -38,27 +39,27 @@ export default class CreateOfferDto {
   @IsInt({ message: '$property must be an integer' })
   public overallRating!: number;
 
-  @IsNumber({ maxDecimalPlaces: 1 }, { message: 'Only 1 digit precision to the right of decimal point is allowed' })
-  @Min(1, { message: '$property must be a numerical value no less than $constraint1' })
-  @Max(5, { message: '$property must be a numerical value no more than $constraint1' })
+  @IsNumber({ maxDecimalPlaces: ValidateConstants.maxDecimalPlaces }, { message: 'Only 1 digit precision to the right of decimal point is allowed' })
+  @Min(ValidateConstants.minAverageRating, { message: '$property must be a numerical value no less than $constraint1' })
+  @Max(ValidateConstants.maxAverageRating, { message: '$property must be a numerical value no more than $constraint1' })
   public averageRating!: number;
 
   @IsEnum(HousingType, { message: '$property should be a value from HousingTypeEnum' })
   public housingType!: HousingType;
 
   @IsInt({ message: '$property must be an integer' })
-  @Min(1, { message: '$property must be an integer value no less than $constraint1' })
-  @Max(8, { message: '$property must be an integer value no more than $constraint1' })
+  @Min(ValidateConstants.minRoomsNumber, { message: '$property must be an integer value no less than $constraint1' })
+  @Max(ValidateConstants.maxRoomsNumber, { message: '$property must be an integer value no more than $constraint1' })
   public roomsNumber!: number;
 
   @IsInt({ message: '$property must be an integer' })
-  @Min(1, { message: '$property must be an integer value no less than $constraint1' })
-  @Max(10, { message: '$property must be an integer value no more than $constraint1' })
+  @Min(ValidateConstants.minGuestsNumber, { message: '$property must be an integer value no less than $constraint1' })
+  @Max(ValidateConstants.maxGuestsNumber, { message: '$property must be an integer value no more than $constraint1' })
   public guestsNuber!: number;
 
   @IsInt({ message: 'Price must be an integer' })
-  @Min(100, { message: 'Minimum price is 100' })
-  @Max(100000, { message: 'Maximum price is 100000' })
+  @Min(ValidateConstants.minRentPrice, { message: 'Minimum price is 100' })
+  @Max(ValidateConstants.maxRentPrice, { message: 'Maximum price is 100000' })
   public rentPrice!: number;
 
   @IsArray({ message: '$property must be an array' })
