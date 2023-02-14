@@ -1,5 +1,5 @@
 import { IsEmail, IsEnum, IsString, Length } from 'class-validator';
-import { userType } from '../../../types/user-type.enum.js';
+import { UserType } from '../../../types/user-type.enum.js';
 
 export default class CreateUserDto {
   @IsEmail({}, { message: 'email must be valid address' })
@@ -9,7 +9,7 @@ export default class CreateUserDto {
   @Length(1, 15, { message: 'Min length is 1, max is 15' })
   public name!: string;
 
-  @IsEnum(userType, { message: '$property should be a value from userTypeEnum' })
+  @IsEnum(UserType, { message: '$property should be a value from UserTypeEnum' })
   public type!: string;
 
   @IsString({ message: 'password is required' })

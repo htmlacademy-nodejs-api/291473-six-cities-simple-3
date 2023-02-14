@@ -1,5 +1,5 @@
 import { Coordinates } from '../../../types/coordinates.type.js';
-import { housingType } from '../../../types/housing-type.enum.js';
+import { HousingType } from '../../../types/housing-type.enum.js';
 import { City } from '../../../types/city.enum.js';
 import { ArrayMaxSize, ArrayMinSize, IsArray, IsBoolean, IsDateString, IsEnum, IsInt, IsNumber, IsString, Max, MaxLength, Min, MinLength, Validate } from 'class-validator';
 import { Amenities } from '../../../types/amenities.enum.js';
@@ -43,8 +43,8 @@ export default class CreateOfferDto {
   @Max(5, { message: '$property must be a numerical value no more than $constraint1' })
   public averageRating!: number;
 
-  @IsEnum(housingType, { message: '$property should be a value from housingTypeEnum' })
-  public housingType!: housingType;
+  @IsEnum(HousingType, { message: '$property should be a value from HousingTypeEnum' })
+  public housingType!: HousingType;
 
   @IsInt({ message: '$property must be an integer' })
   @Min(1, { message: '$property must be an integer value no less than $constraint1' })

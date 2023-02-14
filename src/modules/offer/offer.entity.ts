@@ -1,5 +1,5 @@
 import typegoose, { defaultClasses, getModelForClass, Ref } from '@typegoose/typegoose';
-import { housingType } from '../../types/housing-type.enum.js';
+import { HousingType } from '../../types/housing-type.enum.js';
 import { Coordinates } from '../../types/coordinates.type.js';
 import { UserEntity } from '../user/user.entity.js';
 import { City } from '../../types/city.enum.js';
@@ -80,7 +80,7 @@ export class OfferEntity extends defaultClasses.TimeStamps {
     required: true,
     type: () => String,
   })
-  public housingType!: housingType;
+  public housingType!: HousingType;
 
   @prop({
     required: true,
