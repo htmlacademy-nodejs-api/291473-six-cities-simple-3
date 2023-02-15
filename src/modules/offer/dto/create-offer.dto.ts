@@ -39,27 +39,27 @@ export default class CreateOfferDto {
   @IsInt({ message: '$property must be an integer' })
   public overallRating!: number;
 
-  @IsNumber({ maxDecimalPlaces: ValidateConstants.maxDecimalPlaces }, { message: 'Only 1 digit precision to the right of decimal point is allowed' })
-  @Min(ValidateConstants.minAverageRating, { message: '$property must be a numerical value no less than $constraint1' })
-  @Max(ValidateConstants.maxAverageRating, { message: '$property must be a numerical value no more than $constraint1' })
+  @IsNumber({ maxDecimalPlaces: ValidateConstants.MaxDecimalPlaces }, { message: 'Only 1 digit precision to the right of decimal point is allowed' })
+  @Min(ValidateConstants.MinAverageRating, { message: '$property must be a numerical value no less than $constraint1' })
+  @Max(ValidateConstants.MaxAverageRating, { message: '$property must be a numerical value no more than $constraint1' })
   public averageRating!: number;
 
   @IsEnum(HousingType, { message: '$property should be a value from HousingTypeEnum' })
   public housingType!: HousingType;
 
   @IsInt({ message: '$property must be an integer' })
-  @Min(ValidateConstants.minRoomsNumber, { message: '$property must be an integer value no less than $constraint1' })
-  @Max(ValidateConstants.maxRoomsNumber, { message: '$property must be an integer value no more than $constraint1' })
+  @Min(ValidateConstants.MinRoomsNumber, { message: '$property must be an integer value no less than $constraint1' })
+  @Max(ValidateConstants.MaxRoomsNumber, { message: '$property must be an integer value no more than $constraint1' })
   public roomsNumber!: number;
 
   @IsInt({ message: '$property must be an integer' })
-  @Min(ValidateConstants.minGuestsNumber, { message: '$property must be an integer value no less than $constraint1' })
-  @Max(ValidateConstants.maxGuestsNumber, { message: '$property must be an integer value no more than $constraint1' })
+  @Min(ValidateConstants.MinGuestsNumber, { message: '$property must be an integer value no less than $constraint1' })
+  @Max(ValidateConstants.MaxGuestsNumber, { message: '$property must be an integer value no more than $constraint1' })
   public guestsNuber!: number;
 
   @IsInt({ message: 'Price must be an integer' })
-  @Min(ValidateConstants.minRentPrice, { message: 'Minimum price is 100' })
-  @Max(ValidateConstants.maxRentPrice, { message: 'Maximum price is 100000' })
+  @Min(ValidateConstants.MinRentPrice, { message: 'Minimum price is 100' })
+  @Max(ValidateConstants.MaxRentPrice, { message: 'Maximum price is 100000' })
   public rentPrice!: number;
 
   @IsArray({ message: '$property must be an array' })
