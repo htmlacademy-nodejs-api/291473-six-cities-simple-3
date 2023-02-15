@@ -7,12 +7,12 @@ import { ValidateCityCoords } from '../../../common/middlewares/validate-coords.
 import { ValidateConstants } from '../../../utils/validate.constants.js';
 
 export default class UpdateOfferDto {
-  @MinLength(ValidateConstants.minLengthTitle, { message: 'Minimum title length must be 10' })
-  @MaxLength(ValidateConstants.maxLengthTitle, { message: 'Maximum title length must be 100' })
+  @MinLength(ValidateConstants.MinLengthTitle, { message: 'Minimum title length must be 10' })
+  @MaxLength(ValidateConstants.MaxLengthTitle, { message: 'Maximum title length must be 100' })
   public title?: string;
 
-  @MinLength(ValidateConstants.minOfferDescriptionLength, { message: 'Minimum description length must be 20' })
-  @MaxLength(ValidateConstants.maxOfferDescriptionLength, { message: 'Maximum description length must be 1024' })
+  @MinLength(ValidateConstants.MinOfferDescriptionLength, { message: 'Minimum description length must be 20' })
+  @MaxLength(ValidateConstants.MaxOfferDescriptionLength, { message: 'Maximum description length must be 1024' })
   public description?: string;
 
   @IsDateString({}, { message: 'postDate must be valid ISO date' })
@@ -21,12 +21,12 @@ export default class UpdateOfferDto {
   @IsEnum(City, { message: '$property should be a value from CityEnum' })
   public city?: string;
 
-  @MaxLength(ValidateConstants.maxLengthImage, { message: 'Too short for field «image»' })
+  @MaxLength(ValidateConstants.MaxLengthImage, { message: 'Too short for field «image»' })
   public previewImagePath?: string;
 
   @IsArray({ message: 'Field detailImagePath must be an array' })
-  @ArrayMinSize(ValidateConstants.minCountDetailImages, { message: '$property must contain exactly $constraint1 items' })
-  @ArrayMaxSize(ValidateConstants.maxCountDetailImages, { message: '$property must contain exactly $constraint1 items' })
+  @ArrayMinSize(ValidateConstants.MinCountDetailImages, { message: '$property must contain exactly $constraint1 items' })
+  @ArrayMaxSize(ValidateConstants.MaxCountDetailImages, { message: '$property must contain exactly $constraint1 items' })
   @IsString({ message: '$property must be a string', each: true })
   public detailImagePath?: string[];
 
